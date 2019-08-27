@@ -1,0 +1,41 @@
+{
+  "name": "gotta-go-form",
+  "version": "1.0.0",
+  "description": "My attempt at recreating my generic form renderer with Typescript, hooks, and styled components",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --env.dev --open --watch",
+    "build": "webpack --env.dev",
+    "build:prod": "./node_modules/.bin/tsc && \"./node_modules/.bin/webpack\" -p --env.prod",
+    "transpile": "./node_modules/.bin/tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacob-pecile/gotta-go-form.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacob-pecile/gotta-go-form/issues"
+  },
+  "homepage": "https://github.com/jacob-pecile/gotta-go-form#readme",
+  "dependencies": {
+    "react": "16.9.0",
+    "react-dom": "^16.9.0",
+    "typescript": "3.5.3",
+    "webpack": "4.39.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.0.4",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  }
+}
