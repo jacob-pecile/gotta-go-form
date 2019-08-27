@@ -1,4 +1,4 @@
-import {FormInput} from './input';
+import FormInput from './input';
 
 export {
     FormInput
