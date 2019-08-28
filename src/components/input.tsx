@@ -22,4 +22,17 @@ const FormInput = (props: FormInputProps) => {
 export default styled(FormInput)`
     display: flex;
     flex-direction: column;
+
+    & > span{
+        font-size: 14px;
+        font-family: "Open Sans"
+        
+    }
+
+    & > input {
+        margin-top: 4px;
+        padding: 8px;
+        border-radius: 3px;
+        border: 1px solid #1f1f1f;
+    }
 `;

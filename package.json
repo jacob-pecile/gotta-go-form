@@ -1,6 +1,6 @@
 {
   "name": "gotta-go-form",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "My attempt at recreating my generic form renderer with Typescript, hooks, and styled components",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/jacob-pecile/gotta-go-form#readme",
   "dependencies": {
+    "@mdi/js": "^4.2.95",
+    "@mdi/react": "^1.2.1",
     "classnames": "^2.2.6",
     "react": "16.9.0",
     "react-dom": "^16.9.0",

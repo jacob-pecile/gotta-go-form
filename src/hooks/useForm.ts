@@ -16,7 +16,13 @@ export const useForm = (form: FormDefinition) => {
         callback(event);
     }
 
+    const updateCurrentSection = (sectionNumber: number) => () => {
+        let element = document.getElementById(`form-section-${sectionNumber}`);
+        element.scrollIntoView();
+    }
+
     return {
-        onCallback
+        onCallback,
+        updateCurrentSection
     }
 }

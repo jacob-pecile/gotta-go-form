@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import {Form} from './src/form';
+import Form from './src/form';
 import {FormDefinition, FormType} from './src/types/formtypes';
 
 let def: FormDefinition = {
@@ -21,7 +21,15 @@ let def: FormDefinition = {
     ]
 }
 
+let footeractions = [
+    {
+        text: 'Submit',
+        type: 'Primary',
+        onClick: () => (console.log('Submitted'))
+    }
+];
+
 ReactDOM.render(
-    <Form formDefinition={def} />,
+    <Form formDefinition={def} footerActions={footeractions}/>,
   document.getElementById('app')
 );
