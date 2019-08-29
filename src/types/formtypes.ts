@@ -22,7 +22,7 @@ export enum FormType{
     Input = 0,
     Checkbox = 1,
     DropDown = 2,
-    RadioButtonGroup = 3,
+    RadioButtonList = 3,
     CheckboxList = 4
 }
 

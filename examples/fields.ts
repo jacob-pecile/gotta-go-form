@@ -36,6 +36,21 @@ export const checkboxlist = {
     type: types.FormType.CheckboxList,
     callback: e => (console.log(e)),
     value: [],
+    properties: {layout: 'horizontal'},
+    options: [
+        {value: 1, label: 'gotta'},
+        {value: 2, label: 'go'},
+        {value: 3, label: 'fast'}
+    ]
+}
+
+export const radiolist = {
+    title: 'RadioList',
+    accessor: 'radiolist',
+    type: types.FormType.RadioButtonList,
+    callback: e => (console.log(e)),
+    value: null,
+    properties: {layout: 'horizontal'},
     options: [
         {value: 1, label: 'gotta'},
         {value: 2, label: 'go'},

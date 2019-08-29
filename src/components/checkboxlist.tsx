@@ -47,9 +47,14 @@ const CheckBoxList = (props: FormCheckBoxListProps) => {
 
 export default styled(CheckBoxList)`
     display: flex;
-    flex-direction: ${(props: FormCheckBoxListProps) => props.field.properties && props.field.properties.layout.layout === 'horizontal' ? 'row' : 'column'};
+    flex-direction: ${(props: FormCheckBoxListProps) => props.field.properties && props.field.properties.layout === 'horizontal' ? 'row' : 'column'};
 
     & > .form-checkbox{
         margin-bottom: 4px;
+        margin-right: 16px;
+
+        & > svg {
+            margin-right: 4px;
+        }
     }
 `
