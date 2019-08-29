@@ -11,7 +11,7 @@ export const useForm = (form: FormDefinition) => {
 
         field = handleCallback(field, event);
 
-        setDefinition(definition);
+        setDefinition({...definition});
 
         callback(event);
     }
@@ -22,6 +22,7 @@ export const useForm = (form: FormDefinition) => {
     }
 
     return {
+        definition,
         onCallback,
         updateCurrentSection
     }

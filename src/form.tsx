@@ -17,9 +17,9 @@ interface FormProps{
 
 export const Form = (props: FormProps) => {
     let {formDefinition, className, footerActions} = props;
-    let {onCallback, updateCurrentSection} = useForm(formDefinition);
+    let {definition, onCallback, updateCurrentSection} = useForm(formDefinition);
 
-    let sections = formDefinition.sections.map((section, sectionIndex) =>(
+    let sections = definition.sections.map((section, sectionIndex) =>(
         <FormSection key={sectionIndex} sectionIndex={sectionIndex} section={section} onFieldCallback={onCallback}/>
     ));
 

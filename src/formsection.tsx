@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {Section, FormType, FormField, FormIndex} from './types/formtypes';
-import {FormInput} from './components';
 import styled from 'styled-components';
 import classNames from 'classnames';
+
+import {FormInput} from './components';
+import {FormCheckBox} from './components';
 
 interface FormSectionProps{
     sectionIndex: number;
@@ -18,13 +20,18 @@ export const FormSection = (props: FormSectionProps) => {
         field.callback = onFieldCallback({sectionIndex, fieldIndex}, field.callback)
 
         let fieldComponent = {
-            [FormType.Input] : <FormInput key={fieldIndex} field={field} />
+            [FormType.Input] : <FormInput key={fieldIndex} field={field} />,
+            [FormType.Checkbox] : <FormCheckBox key={fieldIndex} field={field} />
         }
 
         return fieldComponent[field.type];
     };
 
-    let fields = section.fields.map((field, index) =>  renderField(field, index));
+    let fields = section.fields.map((field, index) =>  
+        <div className="field-container">
+            {renderField(field, index)}
+        </div>
+    );
 
     return (
         <div id={`form-section-${sectionIndex}`} className={classNames(props.className, 'form-section')} >
@@ -57,6 +64,10 @@ export default styled(FormSection)`
     & > .form-field-container{
         display: flex;
         flex-direction: column;
+
+        & > .field-container{
+            margin-bottom: 8px;
+        }
     }
 
 `
