@@ -39,22 +39,43 @@ const CheckBoxList = (props: FormCheckBoxListProps) => {
     });
 
     return (
-        <div className={classNames('checkbox-list-container', props.className)}>
-            {checkboxes}
+        <div className={props.className}>
+            <div className="checkbox-list-title">
+                <span>{field.title}</span>
+            </div>
+            <div className={classNames('checkbox-list-container')}>
+                {checkboxes}
+            </div>
         </div>
     );
 }
 
 export default styled(CheckBoxList)`
-    display: flex;
-    flex-direction: ${(props: FormCheckBoxListProps) => props.field.properties && props.field.properties.layout === 'horizontal' ? 'row' : 'column'};
 
-    & > .form-checkbox{
+    & > .checkbox-list-title {
+        display: flex;
+        justify-content: flex-start;
         margin-bottom: 4px;
-        margin-right: 16px;
 
-        & > svg {
-            margin-right: 4px;
+        & > span{
+            font-size: 14px;
+            font-family: "Open Sans";
+            user-select: none;
+            font-weight: 600;
+        }
+    }
+
+    & > .checkbox-list-container{
+        display: flex;
+        flex-direction: ${(props: FormCheckBoxListProps) => props.field.properties && props.field.properties.layout === 'horizontal' ? 'row' : 'column'};
+
+        & > .form-checkbox{
+            margin-bottom: 4px;
+            margin-right: 16px;
+
+            & > svg {
+                margin-right: 4px;
+            }
         }
     }
 `

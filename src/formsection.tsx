@@ -8,7 +8,8 @@ import {
     FormCheckBox,
     FormDropDown,
     FormCheckBoxList,
-    FormRadioButtonList
+    FormRadioButtonList,
+    FormDateTime
 } 
 from './components';
 
@@ -31,7 +32,8 @@ export const FormSection = (props: FormSectionProps) => {
             [FormType.Checkbox] : <FormCheckBox key={fieldIndex} field={field} />,
             [FormType.DropDown] : <FormDropDown key={fieldIndex} field={field} />,
             [FormType.CheckboxList] : <FormCheckBoxList key={fieldIndex} field={field} />,
-            [FormType.RadioButtonList] : <FormRadioButtonList key={fieldIndex} field={field} />
+            [FormType.RadioButtonList] : <FormRadioButtonList key={fieldIndex} field={field} />,
+            [FormType.DateTime] : <FormDateTime key={fieldIndex} field={field} />
         }
 
         return fieldComponent[field.type];

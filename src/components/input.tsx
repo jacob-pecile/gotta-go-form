@@ -25,7 +25,8 @@ export default styled(FormInput)`
 
     & > span{
         font-size: 14px;
-        font-family: "Open Sans"
+        font-family: "Open Sans";
+        font-weight: 600;
     }
 
     & > input {

@@ -30,33 +30,56 @@ const FormRadioButtonList = (props: FormRadioButtonListProps) => {
     });
 
     return (
-        <div className={classNames('radio-list-container', props.className)}>
-            {checkboxes}
+        <div className={props.className}>
+            <div className="radio-list-title">
+                <span>{field.title}</span>
+            </div>
+            <div className={classNames('radio-list-container')}>
+                {checkboxes}
+            </div>
         </div>
     );
 }
 
 export default styled(FormRadioButtonList)`
-    display: flex;
-    flex-direction: ${(props: FormRadioButtonListProps) => props.field.properties && props.field.properties.layout === 'horizontal' ? 'row' : 'column'};
 
-    & > .radio-button{
-        margin-bottom: 4px;
-        margin-right: 16px;
+    & > .radio-list-title {
         display: flex;
-        align-items: center;
-        cursor: pointer;
+        justify-content: flex-start;
+        margin-bottom: 4px;
 
         & > span{
             font-size: 14px;
             font-family: "Open Sans";
             user-select: none;
-        }
-
-        & > svg {
-            margin-right: 4px;
-            width: 24px;
-            height: 24px;
+            font-weight: 600;
         }
     }
+
+    & > .radio-list-container{
+
+        display: flex;
+        flex-direction: ${(props: FormRadioButtonListProps) => props.field.properties && props.field.properties.layout === 'horizontal' ? 'row' : 'column'};
+
+        & > .radio-button{
+            margin-bottom: 4px;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            & > span{
+                font-size: 14px;
+                font-family: "Open Sans";
+                user-select: none;
+            }
+
+            & > svg {
+                margin-right: 4px;
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+    
 `

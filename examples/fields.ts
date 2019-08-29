@@ -57,3 +57,12 @@ export const radiolist = {
         {value: 3, label: 'fast'}
     ]
 }
+
+export const datetime = {
+    title: 'DateTime',
+    accessor: 'datetime',
+    type: types.FormType.DateTime,
+    callback: e => (console.log(e.target.value)),
+    value: '',
+    properties: {dateformat: 'MM-DD-YYYY'}
+}

@@ -23,7 +23,8 @@ export enum FormType{
     Checkbox = 1,
     DropDown = 2,
     RadioButtonList = 3,
-    CheckboxList = 4
+    CheckboxList = 4,
+    DateTime = 5
 }
 
 export interface FormIndex{
