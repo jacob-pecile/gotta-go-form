@@ -13,6 +13,7 @@ export interface FormField{
     type: FormType;
     callback: (e: any) => void;
     value: any;
+    options?: FormOptions[]
 }
 
 export enum FormType{
@@ -26,4 +27,9 @@ export enum FormType{
 export interface FormIndex{
     sectionIndex: number;
     fieldIndex: number;
+}
+
+export interface FormOptions{
+    value: number | string;
+    label: string;
 }

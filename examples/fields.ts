@@ -16,3 +16,16 @@ export const checkbox = {
     callback: e => (console.log(e)),
     value: false
 }
+
+export const dropdown = {
+    title: 'DropDown',
+    accessor: 'dropdown',
+    type: types.FormType.DropDown,
+    callback: e => (console.log(e)),
+    value: null,
+    options: [
+        {value: 1, label: 'gotta'},
+        {value: 2, label: 'go'},
+        {value: 3, label: 'fast'}
+    ]
+}

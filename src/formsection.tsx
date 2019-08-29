@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import {FormInput} from './components';
 import {FormCheckBox} from './components';
+import {FormDropDown} from './components';
 
 interface FormSectionProps{
     sectionIndex: number;
@@ -21,14 +22,15 @@ export const FormSection = (props: FormSectionProps) => {
 
         let fieldComponent = {
             [FormType.Input] : <FormInput key={fieldIndex} field={field} />,
-            [FormType.Checkbox] : <FormCheckBox key={fieldIndex} field={field} />
+            [FormType.Checkbox] : <FormCheckBox key={fieldIndex} field={field} />,
+            [FormType.DropDown] : <FormDropDown key={fieldIndex} field={field} />
         }
 
         return fieldComponent[field.type];
     };
 
     let fields = section.fields.map((field, index) =>  
-        <div className="field-container">
+        <div key={index} className="field-container">
             {renderField(field, index)}
         </div>
     );
@@ -66,7 +68,7 @@ export default styled(FormSection)`
         flex-direction: column;
 
         & > .field-container{
-            margin-bottom: 8px;
+            margin-bottom: 16px;
         }
     }
 
