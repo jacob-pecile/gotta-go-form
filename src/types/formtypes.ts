@@ -15,6 +15,7 @@ export interface FormField{
     value: any;
     options?: FormOptions[];
     properties?: any;
+    customComponent?: (field: FormField) => JSX.Element;
 }
 
 export enum FormType{

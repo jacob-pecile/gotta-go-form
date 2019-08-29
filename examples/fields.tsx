@@ -1,4 +1,5 @@
 
+import * as React from 'react';
 import * as types from '../src/types/formtypes';
 
 export const input = {
@@ -62,7 +63,16 @@ export const datetime = {
     title: 'DateTime',
     accessor: 'datetime',
     type: types.FormType.DateTime,
-    callback: e => (console.log(e.target.value)),
+    callback: e => (console.log(e)),
     value: '',
     properties: {dateformat: 'MM-DD-YYYY'}
+}
+
+export const custom = {
+    title: 'Custom',
+    accessor: 'custom',
+    type: types.FormType.Custom,
+    callback: e => (console.log(e)),
+    value: '',
+    customComponent: (field) => <input value={field.value} onChange={(e) => {field.callback(e.target.value)}} />
 }

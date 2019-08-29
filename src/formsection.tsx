@@ -28,6 +28,7 @@ export const FormSection = (props: FormSectionProps) => {
         field.callback = onFieldCallback({sectionIndex, fieldIndex}, field.callback)
 
         let fieldComponent = {
+            [FormType.Custom] : field.customComponent && field.customComponent(field),
             [FormType.Input] : <FormInput key={fieldIndex} field={field} {...field.properties}/>,
             [FormType.Checkbox] : <FormCheckBox key={fieldIndex} field={field} />,
             [FormType.DropDown] : <FormDropDown key={fieldIndex} field={field} />,
