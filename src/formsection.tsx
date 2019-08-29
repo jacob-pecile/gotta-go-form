@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import {FormInput} from './components';
 import {FormCheckBox} from './components';
 import {FormDropDown} from './components';
+import {FormCheckBoxList} from './components';
 
 interface FormSectionProps{
     sectionIndex: number;
@@ -21,9 +22,10 @@ export const FormSection = (props: FormSectionProps) => {
         field.callback = onFieldCallback({sectionIndex, fieldIndex}, field.callback)
 
         let fieldComponent = {
-            [FormType.Input] : <FormInput key={fieldIndex} field={field} />,
+            [FormType.Input] : <FormInput key={fieldIndex} field={field} {...field.properties}/>,
             [FormType.Checkbox] : <FormCheckBox key={fieldIndex} field={field} />,
-            [FormType.DropDown] : <FormDropDown key={fieldIndex} field={field} />
+            [FormType.DropDown] : <FormDropDown key={fieldIndex} field={field} />,
+            [FormType.CheckboxList] : <FormCheckBoxList key={fieldIndex} field={field} />
         }
 
         return fieldComponent[field.type];

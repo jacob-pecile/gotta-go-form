@@ -4,14 +4,14 @@ import * as ReactDOM from 'react-dom';
 import Form from './src/form';
 import {FormDefinition} from './src/types/formtypes';
 
-import {input, checkbox, dropdown} from './examples/fields';
+import {input, checkbox, dropdown, checkboxlist} from './examples/fields';
 
 let def: FormDefinition = {
     sections: [
         {
             title: 'test',
             fields: [
-                input, checkbox, dropdown
+                input, checkbox, dropdown, checkboxlist
             ]
         }
     ]

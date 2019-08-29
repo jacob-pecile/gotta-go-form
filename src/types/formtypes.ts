@@ -13,7 +13,8 @@ export interface FormField{
     type: FormType;
     callback: (e: any) => void;
     value: any;
-    options?: FormOptions[]
+    options?: FormOptions[];
+    properties?: any;
 }
 
 export enum FormType{
@@ -21,7 +22,8 @@ export enum FormType{
     Input = 0,
     Checkbox = 1,
     DropDown = 2,
-    RadioButtonGroup = 3
+    RadioButtonGroup = 3,
+    CheckboxList = 4
 }
 
 export interface FormIndex{

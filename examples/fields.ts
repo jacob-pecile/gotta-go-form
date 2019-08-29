@@ -29,3 +29,16 @@ export const dropdown = {
         {value: 3, label: 'fast'}
     ]
 }
+
+export const checkboxlist = {
+    title: 'CheckBoxList',
+    accessor: 'checkboxlist',
+    type: types.FormType.CheckboxList,
+    callback: e => (console.log(e)),
+    value: [],
+    options: [
+        {value: 1, label: 'gotta'},
+        {value: 2, label: 'go'},
+        {value: 3, label: 'fast'}
+    ]
+}
