@@ -1,32 +1,32 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {FormField} from '../types/formtypes';
+import { FormField } from '../types/formtypes';
 import classNames from 'classnames';
 
 import Icon from '@mdi/react';
 import { mdiCheckboxBlankOutline, mdiCheckboxMarked } from '@mdi/js';
 
-interface FormCheckBoxProps{
+interface FormCheckBoxProps {
     field: FormField;
     className?: string;
 }
 
 const FormCheckBox = (props: FormCheckBoxProps) => {
-    let{field} = props;
+    let { field } = props;
 
     let path = field.value ? mdiCheckboxMarked : mdiCheckboxBlankOutline;
 
     let onClick = () => {
-        field.callback({value: !field.value});
-    }
+        field.callback({ value: !field.value });
+    };
 
     return (
         <div className={classNames('form-checkbox', props.className)} onClick={onClick}>
-            <Icon path={path} color="@#1f1f1f"/>
+            <Icon path={path} color="@#1f1f1f" />
             <span>{field.title}</span>
         </div>
     );
-}
+};
 
 export default styled(FormCheckBox)`
     display: flex;
@@ -45,4 +45,4 @@ export default styled(FormCheckBox)`
         height: 24px;
         margin-right: 8px;
     }
-`
+`;

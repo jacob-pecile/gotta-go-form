@@ -1,23 +1,27 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {FormField} from '../types/formtypes';
+import { FormField } from '../types/formtypes';
 import classNames from 'classnames';
+import ErrorMessage from './metaForm/errorMessage';
 
-interface FormInputProps{
+interface FormInputProps {
     field: FormField;
     className?: string;
 }
 
 const FormInput = (props: FormInputProps) => {
-    let {field, className} = props;
+    let { field, className } = props;
 
     return (
         <div className={classNames('form-input-container', className)}>
             <span>{field.title}</span>
-            <input onChange={field.callback}/>
+            <input onChange={field.callback} />
+            {(field.properties && field.properties.InvalidMessage) &&
+                <ErrorMessage message={field.properties.InvalidMessage} />
+            }
         </div>
-    )
-}
+    );
+};
 
 export default styled(FormInput)`
     display: flex;

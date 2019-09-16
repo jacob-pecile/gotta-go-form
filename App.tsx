@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import Form from './src/form';
-import {FormDefinition} from './src/types/formtypes';
+import { FormDefinition } from './src/types/formtypes';
 
-import {input, checkbox, dropdown, checkboxlist, radiolist, datetime, custom} from './examples/fields';
+import { input, checkbox, dropdown, checkboxlist, radiolist, datetime, custom } from './examples/fields';
 
 let def: FormDefinition = {
     sections: [
@@ -15,17 +15,18 @@ let def: FormDefinition = {
             ]
         }
     ]
-}
+};
 
 let footeractions = [
     {
         text: 'Submit',
         type: 'Primary',
+        validate: true,
         onClick: () => (console.log('Submitted'))
     }
 ];
 
 ReactDOM.render(
-    <Form formDefinition={def} footerActions={footeractions}/>,
-  document.getElementById('app')
+    <Form formDefinition={def} footerActions={footeractions} />,
+    document.getElementById('app')
 );

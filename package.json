@@ -23,6 +23,7 @@
     "@mdi/js": "^4.2.95",
     "@mdi/react": "^1.2.1",
     "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "16.9.0",
     "react-datetime": "^2.16.3",
@@ -46,6 +47,7 @@
     "sass-loader": "^8.0.0",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.0.4",
+    "tslint": "^5.20.0",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0"
   }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Section, FormType, FormField, FormIndex} from './types/formtypes';
+import { Section, FormType, FormField, FormIndex } from './types/formtypes';
 import styled from 'styled-components';
 import classNames from 'classnames';
 
@@ -10,37 +10,37 @@ import {
     FormCheckBoxList,
     FormRadioButtonList,
     FormDateTime
-} 
-from './components';
+}
+    from './components';
 
 
-interface FormSectionProps{
+interface FormSectionProps {
     sectionIndex: number;
     section: Section;
-    onFieldCallback: (index: FormIndex, callback: (event: any) => void ) => (event: any) => void;
+    onFieldCallback: (index: FormIndex, callback: (event: any) => void) => (event: any) => void;
     className?: string;
 }
 
 export const FormSection = (props: FormSectionProps) => {
-    let {section, onFieldCallback, sectionIndex} = props;
+    let { section, onFieldCallback, sectionIndex } = props;
 
     const renderField = (field: FormField, fieldIndex: number) => {
-        field.callback = onFieldCallback({sectionIndex, fieldIndex}, field.callback)
+        field.callback = onFieldCallback({ sectionIndex, fieldIndex }, field.callback);
 
         let fieldComponent = {
-            [FormType.Custom] : field.customComponent && field.customComponent(field),
-            [FormType.Input] : <FormInput key={fieldIndex} field={field} {...field.properties}/>,
-            [FormType.Checkbox] : <FormCheckBox key={fieldIndex} field={field} />,
-            [FormType.DropDown] : <FormDropDown key={fieldIndex} field={field} />,
-            [FormType.CheckboxList] : <FormCheckBoxList key={fieldIndex} field={field} />,
-            [FormType.RadioButtonList] : <FormRadioButtonList key={fieldIndex} field={field} />,
-            [FormType.DateTime] : <FormDateTime key={fieldIndex} field={field} />
-        }
+            [FormType.Custom]: field.customComponent && field.customComponent(field),
+            [FormType.Input]: <FormInput key={fieldIndex} field={field} {...field.properties} />,
+            [FormType.Checkbox]: <FormCheckBox key={fieldIndex} field={field} />,
+            [FormType.DropDown]: <FormDropDown key={fieldIndex} field={field} />,
+            [FormType.CheckboxList]: <FormCheckBoxList key={fieldIndex} field={field} />,
+            [FormType.RadioButtonList]: <FormRadioButtonList key={fieldIndex} field={field} />,
+            [FormType.DateTime]: <FormDateTime key={fieldIndex} field={field} />
+        };
 
         return fieldComponent[field.type];
     };
 
-    let fields = section.fields.map((field, index) =>  
+    let fields = section.fields.map((field, index) =>
         <div key={index} className="field-container">
             {renderField(field, index)}
         </div>

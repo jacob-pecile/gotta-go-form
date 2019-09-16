@@ -3,7 +3,7 @@
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const extractSass = new MiniCssExtractPlugin({
-    filename: "./dist/[name].css",   
+    filename: "./dist/[name].css",
 });
 
 var DefinePlugin = require("webpack").DefinePlugin;
@@ -22,11 +22,11 @@ module.exports = env => {
     });
 
     return {
-        entry:{
-            "GottaGoForm":["babel-polyfill", "./App.tsx"]
+        entry: {
+            "GottaGoForm": ["babel-polyfill", "./App.tsx"]
         },
         output: {
-            path:  path.resolve(__dirname, "."),
+            path: path.resolve(__dirname, "."),
             filename: "./dist/[name].js",
             libraryTarget: 'umd',
             umdNamedDefine: true,
@@ -34,10 +34,10 @@ module.exports = env => {
         },
         module: {
             rules: [
-                { 
+                {
                     test: /\.tsx?$/,
                     loader: "babel-loader!ts-loader"
-                },                        
+                },
                 {
                     test: /\.jsx?$/,
                     loader: 'babel-loader',
@@ -45,7 +45,7 @@ module.exports = env => {
                     options: {
                         presets: ['react', 'es2015']
                     }
-                },   
+                },
                 { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
                 {
                     test: /.(\.scss|\.css)$/,
@@ -57,15 +57,15 @@ module.exports = env => {
                 }
             ]
         },
-        devtool: "sourcemap",
-        plugins:[
+        devtool: "source-map",
+        plugins: [
             extractSass,
             envConfig
         ],
         resolve: {
             extensions: [".ts", ".tsx", ".js", ".json", ".css"]
         },
-        devServer:{
+        devServer: {
             contentBase: "./",
             port: 7777
         }

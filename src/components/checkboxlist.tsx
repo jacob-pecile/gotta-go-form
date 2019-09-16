@@ -1,32 +1,32 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {FormField} from '../types/formtypes';
+import { FormField } from '../types/formtypes';
 import classNames from 'classnames';
+import ErrorMessage from './metaForm/errorMessage';
 
 import CheckBox from './checkbox';
 
-interface FormCheckBoxListProps{
+interface FormCheckBoxListProps {
     field: FormField;
     className?: string;
 }
 
 const CheckBoxList = (props: FormCheckBoxListProps) => {
-    let {field} = props;
+    let { field } = props;
     let selectedList = field.value;
 
-    let onClick = (value: number | string) => (event: any) =>{
+    let onClick = (value: number | string) => (event: any) => {
 
         let selected = event.value;
 
-        if (!selected){
+        if (!selected) {
             field.callback(selectedList.filter(val => val != value));
         }
-        else
-        {
+        else {
             selectedList.push(value);
             field.callback(selectedList);
         }
-    }
+    };
 
     let checkboxes = field.options.map((opt, i) => {
         let selected = selectedList.indexOf(opt.value) >= 0;
@@ -35,7 +35,7 @@ const CheckBoxList = (props: FormCheckBoxListProps) => {
             value: selected,
             callback: onClick(opt.value)
         };
-        return <CheckBox key={i} field={singleCheckbox}/>
+        return <CheckBox key={i} field={singleCheckbox} />
     });
 
     return (
@@ -46,9 +46,12 @@ const CheckBoxList = (props: FormCheckBoxListProps) => {
             <div className={classNames('checkbox-list-container')}>
                 {checkboxes}
             </div>
+            {(field.properties && field.properties.InvalidMessage) &&
+                <ErrorMessage message={field.properties.InvalidMessage} />
+            }
         </div>
     );
-}
+};
 
 export default styled(CheckBoxList)`
 

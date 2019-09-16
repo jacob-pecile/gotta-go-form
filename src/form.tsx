@@ -1,26 +1,31 @@
 import * as React from 'react'
-import {useForm} from './hooks/useForm';
+import { useForm } from './hooks/useForm';
 import { FormDefinition } from './types/formtypes';
-import {FooterAction} from './types/eventtypes';
-import FormSection from './formSection';
+import { FooterAction } from './types/eventtypes';
+import FormSection from './formsection';
 import NavBar from './components/navigation/navbar';
 import FormFooter from './formfooter';
 
 import classNames from 'classnames';
 import styled from 'styled-components';
 
-interface FormProps{
+interface FormProps {
     formDefinition: FormDefinition;
     className?: string;
     footerActions: FooterAction[];
 }
 
 export const Form = (props: FormProps) => {
-    let {formDefinition, className, footerActions} = props;
-    let {definition, onCallback, updateCurrentSection} = useForm(formDefinition);
+    let { formDefinition, className, footerActions } = props;
+    let {
+        definition,
+        onCallback,
+        updateCurrentSection,
+        formfooterActions
+    } = useForm(formDefinition, footerActions);
 
-    let sections = definition.sections.map((section, sectionIndex) =>(
-        <FormSection key={sectionIndex} sectionIndex={sectionIndex} section={section} onFieldCallback={onCallback}/>
+    let sections = definition.sections.map((section, sectionIndex) => (
+        <FormSection key={sectionIndex} sectionIndex={sectionIndex} section={section} onFieldCallback={onCallback} />
     ));
 
     let titles = formDefinition.sections.map(section => section.title);
@@ -28,17 +33,17 @@ export const Form = (props: FormProps) => {
     return (
         <div className={classNames(className, 'form-container')}>
             <div className="main-form-content">
-                <NavBar sections={titles} onSectionClick={updateCurrentSection}/>
+                <NavBar sections={titles} onSectionClick={updateCurrentSection} />
                 <div className="section-container">
                     {sections}
                 </div>
             </div>
             <div className="form-footer">
-                <FormFooter actions={footerActions}/>
+                <FormFooter actions={formfooterActions} />
             </div>
         </div>
     );
-}
+};
 
 export default styled(Form)`
     display: flex;

@@ -1,13 +1,13 @@
-export interface FormDefinition{
+export interface FormDefinition {
     sections: Section[];
 }
 
-export interface Section{
+export interface Section {
     title: string;
     fields: FormField[];
 }
 
-export interface FormField{
+export interface FormField {
     title: string;
     accessor: string;
     type: FormType;
@@ -16,9 +16,11 @@ export interface FormField{
     options?: FormOptions[];
     properties?: any;
     customComponent?: (field: FormField) => JSX.Element;
+    mandatoryMessage?: string;
+    validation?: Validation;
 }
 
-export enum FormType{
+export enum FormType {
     Custom = -1,
     Input = 0,
     Checkbox = 1,
@@ -28,12 +30,19 @@ export enum FormType{
     DateTime = 5
 }
 
-export interface FormIndex{
+export interface FormIndex {
     sectionIndex: number;
     fieldIndex: number;
 }
 
-export interface FormOptions{
+export interface FormOptions {
     value: number | string;
     label: string;
+}
+
+export interface Validation {
+    accessors: string[];
+    validate: (currentField: FormField, ...dependantFields: FormField[]) => boolean;
+    evaluation?: boolean;
+    errorMessage: string;
 }
