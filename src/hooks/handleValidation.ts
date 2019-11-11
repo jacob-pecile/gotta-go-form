@@ -33,7 +33,8 @@ export const handleValidation = (field: FormField, allFields: FormField[]) => {
         let { validate, accessors, errorMessage } = field.validation;
 
         let dependantFields =
-            allFields.filter((otherField: FormField) => accessors.indexOf(otherField.accessor) >= 0);
+            allFields.filter((otherField: FormField) => accessors.indexOf(otherField.accessor) >= 0)
+                .sort((a, b) => accessors.indexOf(a.accessor) - accessors.indexOf(b.accessor));
 
         if (!validate(field, ...dependantFields)) {
             field.validation.evaluation = false;
