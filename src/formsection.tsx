@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Section, FormType, FormField, FormIndex } from './types/formtypes';
+import { Section, FormType, FormField } from './types/formtypes';
 import styled from 'styled-components';
 import classNames from 'classnames';
 
@@ -17,15 +17,17 @@ import {
 interface FormSectionProps {
     sectionIndex: number;
     section: Section;
-    onFieldCallback: (index: FormIndex, callback: (event: any) => void) => (event: any) => void;
     className?: string;
 }
 
 export const FormSection = (props: FormSectionProps) => {
-    let { section, onFieldCallback, sectionIndex } = props;
+    let { section, sectionIndex } = props;
 
     const renderField = (field: FormField, fieldIndex: number) => {
-        field.callback = onFieldCallback({ sectionIndex, fieldIndex }, field.callback);
+
+        if (field.visibility && !field.visibility.isVisible){
+            return null;
+        }
 
         let fieldComponent = {
             [FormType.Custom]: field.customComponent && field.customComponent(field),

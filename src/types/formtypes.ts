@@ -18,6 +18,7 @@ export interface FormField {
     customComponent?: (field: FormField) => JSX.Element;
     mandatoryMessage?: string;
     validation?: Validation;
+    visibility?: Visibility;
 }
 
 export enum FormType {
@@ -46,3 +47,9 @@ export interface Validation {
     evaluation?: boolean;
     errorMessage: string;
 }
+
+export interface Visibility{
+    accessors: string[];
+    condition: (...dependantValues: any[]) => boolean;
+    isVisible?: boolean;
+};

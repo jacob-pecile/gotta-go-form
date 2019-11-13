@@ -30,7 +30,8 @@ module.exports = env => {
             filename: "./dist/[name].js",
             libraryTarget: 'umd',
             umdNamedDefine: true,
-            library: "./lib"
+            library: "./lib",
+			publicPath: '/'
         },
         module: {
             rules: [

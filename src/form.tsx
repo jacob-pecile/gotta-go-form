@@ -19,13 +19,12 @@ export const Form = (props: FormProps) => {
     let { formDefinition, className, footerActions } = props;
     let {
         definition,
-        onCallback,
         updateCurrentSection,
         formfooterActions
     } = useForm(formDefinition, footerActions);
 
     let sections = definition.sections.map((section, sectionIndex) => (
-        <FormSection key={sectionIndex} sectionIndex={sectionIndex} section={section} onFieldCallback={onCallback} />
+        <FormSection key={sectionIndex} sectionIndex={sectionIndex} section={section} />
     ));
 
     let titles = formDefinition.sections.map(section => section.title);

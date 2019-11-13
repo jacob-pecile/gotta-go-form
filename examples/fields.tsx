@@ -49,7 +49,11 @@ export const checkboxlist: types.FormField = {
         { value: 1, label: 'gotta' },
         { value: 2, label: 'go' },
         { value: 3, label: 'fast' }
-    ]
+    ],
+    visibility: {
+        accessors:['dropdown', 'input'],
+        condition: (dropdownValue, inputValue) => inputValue === 'show' && dropdownValue === 1
+    }
 };
 
 export const radiolist: types.FormField = {
