@@ -1,93 +1,87 @@
 import { useState, useEffect } from 'react';
-import { handleCallback } from './handleCallback';
-import { HandleFormValidation } from './handleValidation';
-import { FormDefinition, FormIndex, FormField } from '../types/formtypes';
+
+import { handleCallback } from './handlers/handleCallback';
+import { HandleFormValidation } from './handlers/handleValidation';
+import {
+	handleVisibility,
+	updateDependentFieldVisibility
+} from './handlers/handleVisablitity';
+import { handleObserver, updateObservers } from './handlers/handleObservers';
+
+import { FormDefinition, FormIndex } from '../types/formtypes';
 import { FooterAction } from '../types/eventtypes';
 import { flatten } from 'lodash';
 
-//TODO: move copied code into common handle form logic file
-export const useForm = (form: FormDefinition, footerActions: FooterAction[]) => {
+export const useForm = (
+	form: FormDefinition,
+	footerActions: FooterAction[]
+) => {
+	const [definition, setDefinition] = useState(form);
 
-    const [definition, setDefinition] = useState(form);
+	let allFields = flatten(definition.sections.map(section => section.fields));
 
-    let allFields = flatten(definition.sections.map(section => section.fields));
+	useEffect(() => {
+		definition.sections.forEach((section, sectionIndex) =>
+			section.fields.forEach((field, fieldIndex) => {
+				field.callback = onCallback(
+					{ sectionIndex, fieldIndex },
+					field.callback
+				);
+				field.isDirty = false;
 
-    useEffect(() => {
-        definition.sections.forEach((section, sectionIndex) =>  
-            section.fields.forEach((field, fieldIndex) => {
-                field.callback = onCallback({ sectionIndex, fieldIndex }, field.callback);
+				handleVisibility(field, allFields);
+				field = handleObserver(field, allFields);
+			})
+		);
+		setDefinition({ ...definition });
+	}, []);
 
-                if (field.visibility){
-                    let dependentValues = allFields.filter(allField => field.visibility.accessors.indexOf(allField.accessor) >= 0)
-                    .sort((a, b) => {
-                        let {accessors} = field.visibility;
+	const onCallback = (index: FormIndex, callback: (event: any) => void) => (
+		event: any
+	) => {
+		let field =
+			definition.sections[index.sectionIndex].fields[index.fieldIndex];
 
-                        return accessors.indexOf(a.accessor) - accessors.indexOf(b.accessor);
-                    })
-                    .map(a => a.value)
+		field = handleCallback(field, event);
+		updateDependentFieldVisibility(field.accessor, allFields);
+		updateObservers(field.accessor, allFields);
 
-                    field.visibility.isVisible = field.visibility.condition(...dependentValues)
-                }
-                
-            }
-        ));
-        setDefinition({ ...definition });
-    }, [])
+		setDefinition({ ...definition });
 
-    const onCallback = (index: FormIndex, callback: (event: any) => void) => (event: any) => {
-        let field = definition.sections[index.sectionIndex].fields[index.fieldIndex];
+		callback(event);
+	};
 
-        field = handleCallback(field, event);
+	const updateCurrentSection = (sectionNumber: number) => () => {
+		let element = document.getElementById(`form-section-${sectionNumber}`);
+		element.scrollIntoView();
+	};
 
-        allFields.filter(f => f.visibility && f.visibility.accessors.indexOf(field.accessor) >= 0)
-        .forEach((visibilityDepenedentField: FormField) => {
-            let dependentValues = allFields.filter(allField => visibilityDepenedentField.visibility.accessors.indexOf(allField.accessor) >= 0)
-            .sort((a, b) => {
-                let {accessors} = visibilityDepenedentField.visibility;
+	const ValidateForm = (submitCallback: () => void = null) => () => {
+		let validatedForm = HandleFormValidation(definition);
+		let isValid =
+			flatten(validatedForm.sections.map(section => section.fields)).filter(
+				field => field.properties && field.properties.InvalidMessage
+			).length === 0;
+		setDefinition({ ...validatedForm });
 
-                return accessors.indexOf(a.accessor) - accessors.indexOf(b.accessor);
-            })
-            .map(a => a.value)
+		if (isValid) {
+			submitCallback();
+		}
+	};
 
-            visibilityDepenedentField.visibility.isVisible = visibilityDepenedentField.visibility.condition(...dependentValues)
-        });
+	footerActions = footerActions.map(action =>
+		action.validate
+			? {
+					...action,
+					onClick: ValidateForm(action.onClick)
+			  }
+			: action
+	);
 
-        setDefinition({ ...definition });
-
-        callback(event);
-    };
-
-    const updateCurrentSection = (sectionNumber: number) => () => {
-        let element = document.getElementById(`form-section-${sectionNumber}`);
-        element.scrollIntoView();
-    };
-
-    const ValidateForm = (submitCallback: () => void = null) => () => {
-        let validatedForm = HandleFormValidation(definition);
-        setDefinition({ ...validatedForm });
-
-        if (submitCallback) {
-            let isValid = flatten(validatedForm.sections.map(section => section.fields))
-                .filter(field => field.properties && field.properties.InvalidMessage).length === 0;
-
-            if (isValid) {
-                submitCallback();
-            }
-        }
-    };
-
-    footerActions = footerActions.map(action => action.validate ?
-        {
-            ...action,
-            onClick: ValidateForm(action.onClick)
-        }
-        : action
-    );
-
-    return {
-        definition,
-        updateCurrentSection,
-        ValidateForm,
-        formfooterActions: footerActions
-    };
+	return {
+		definition,
+		updateCurrentSection,
+		ValidateForm,
+		formfooterActions: footerActions
+	};
 };
