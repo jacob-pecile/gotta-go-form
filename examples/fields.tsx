@@ -6,7 +6,7 @@ export const input: types.FormField = {
 	accessor: 'input',
 	type: types.FormType.Input,
 	callback: e => console.log(e.target.value),
-	value: null,
+	value: '',
 	mandatoryMessage: 'please put something here',
 	properties: { inputProps: { maxLength: 5 } }
 };
@@ -90,7 +90,7 @@ export const datetime: types.FormField = {
 	type: types.FormType.DateTime,
 	callback: e => console.log(e),
 	value: '',
-	properties: { dateformat: 'MM-DD-YYYY' }
+	properties: { format: null }
 };
 
 export const custom: types.FormField = {

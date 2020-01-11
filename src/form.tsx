@@ -8,6 +8,16 @@ import FormFooter from './formfooter';
 
 import classNames from 'classnames';
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyles = createGlobalStyle`
+    @font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+	}
+	
+`;
 
 interface FormProps {
 	formDefinition: FormDefinition;
@@ -35,6 +45,7 @@ export const Form = (props: FormProps) => {
 
 	return (
 		<div className={classNames(className, 'form-container')}>
+			<GlobalStyles />
 			<div className="main-form-content">
 				{showNavbar && (
 					<NavBar sections={titles} onSectionClick={updateCurrentSection} />
@@ -52,6 +63,7 @@ export default styled(Form)`
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	font-family: 'Open Sans';
 
 	& > .main-form-content {
 		display: flex;

@@ -17,7 +17,11 @@ const FormInput = (props: FormInputProps) => {
 	return (
 		<div className={classNames('form-input-container', className)}>
 			<span>{field.title}</span>
-			<input onChange={field.callback} value={field.value} {...inputProps} />
+			<input
+				onChange={field.callback}
+				value={field.value === null ? '' : field.value}
+				{...inputProps}
+			/>
 			{field.properties && field.properties.InvalidMessage && (
 				<ErrorMessage message={field.properties.InvalidMessage} />
 			)}
