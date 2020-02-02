@@ -56,6 +56,12 @@ export default styled(FormDateTime)`
 			flex: 1;
 			justify-content: space-around;
 
+			& > button {
+				background: #fff;
+				border: none;
+				cursor: pointer;
+			}
+
 			& > .react-datetime-picker__inputGroup {
 				width: 90%;
 
@@ -85,6 +91,7 @@ export default styled(FormDateTime)`
 		& > div > .react-datetime-picker__calendar {
 			width: 350px;
 			max-width: 100vw;
+			position: absolute;
 
 			&.react-datetime-picker__calendar--closed {
 				display: none;
@@ -98,7 +105,6 @@ export default styled(FormDateTime)`
 				border: 1px solid #a0a096;
 				font-family: Arial, Helvetica, sans-serif;
 				line-height: 1.125em;
-				position: absolute;
 				z-index: 1;
 
 				& > .react-calendar__navigation {
@@ -146,6 +152,7 @@ export default styled(FormDateTime)`
 
 		& > div > .react-datetime-picker__clock {
 			display: none;
+			position: absolute;
 		}
 	}
 `;

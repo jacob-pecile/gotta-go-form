@@ -67,6 +67,7 @@ const isFieldEmpty = (field: FormField) => {
 	let isEmptyCalculator = {
 		[FormType.Custom]: () => !value,
 		[FormType.Input]: () => value === '',
+		[FormType.TextArea]: () => value === '',
 		[FormType.DropDown]: () => !value || value === 0,
 		[FormType.RadioButtonList]: () => !value || value === 0,
 		[FormType.DateTime]: () => !value

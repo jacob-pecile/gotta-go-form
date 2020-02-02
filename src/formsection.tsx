@@ -9,6 +9,7 @@ import {
     FormDropDown,
     FormCheckBoxList,
     FormRadioButtonList,
+    FormTextArea,
     FormDateTime
 }
     from './components';
@@ -25,13 +26,14 @@ export const FormSection = (props: FormSectionProps) => {
 
     const renderField = (field: FormField, fieldIndex: number) => {
 
-        if (field.visibility && !field.visibility.isVisible){
+        if (field.visibility && !field.visibility.isVisible) {
             return null;
         }
 
         let fieldComponent = {
             [FormType.Custom]: field.customComponent && field.customComponent(field),
             [FormType.Input]: <FormInput key={fieldIndex} field={field} {...field.properties} />,
+            [FormType.TextArea]: <FormTextArea key={fieldIndex} field={field} {...field.properties} />,
             [FormType.Checkbox]: <FormCheckBox key={fieldIndex} field={field} />,
             [FormType.DropDown]: <FormDropDown key={fieldIndex} field={field} />,
             [FormType.CheckboxList]: <FormCheckBoxList key={fieldIndex} field={field} />,
