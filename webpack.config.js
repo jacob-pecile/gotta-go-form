@@ -10,8 +10,9 @@ var DefinePlugin = require("webpack").DefinePlugin;
 const path = require('path');
 
 module.exports = env => {
+    const isProd = Object.keys(env)[0] === 'prod';
 
-    const envConfig = Object.keys(env)[0] === 'dev' ? new DefinePlugin({
+    const envConfig = !isProd ? new DefinePlugin({
         'process.env': {
             'NODE_ENV': JSON.stringify('development')
         }
@@ -23,7 +24,7 @@ module.exports = env => {
 
     return {
         entry: {
-            "GottaGoForm": ["babel-polyfill", "./App.tsx"]
+            "GottaGoForm": ["babel-polyfill", isProd ? "./index.ts" : "./App.tsx"]
         },
         output: {
             path: path.resolve(__dirname, "."),
@@ -31,7 +32,7 @@ module.exports = env => {
             libraryTarget: 'umd',
             umdNamedDefine: true,
             library: "./lib",
-			publicPath: '/'
+            publicPath: '/'
         },
         module: {
             rules: [
