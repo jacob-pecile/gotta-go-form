@@ -24,7 +24,7 @@ module.exports = env => {
 
     return {
         entry: {
-            "GottaGoForm": ["babel-polyfill", isProd ? "./index.ts" : "./App.tsx"]
+            "GottaGoForm": ["babel-polyfill", isProd ? "./index.js" : "./App.tsx"]
         },
         output: {
             path: path.resolve(__dirname, "."),
