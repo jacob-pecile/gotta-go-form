@@ -7,3 +7,4 @@ App.tsx
 index.html
 tslint.json
 tsconfig.json
+node_modules
