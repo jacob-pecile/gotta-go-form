@@ -23,10 +23,10 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: echo ${{ steps.buildnumber.outputs.build_number }}
+      - run: echo "Build number is $BUILD_NUMBER"
       - run: npm install
       - run: npm run build:prod
-      - run: sh ./scripts/updatePackageVersion.sh ${{ steps.buildnumber.outputs.build_number }}
+      - run: sh ./scripts/updatePackageVersion.sh $BUILD_NUMBER
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
