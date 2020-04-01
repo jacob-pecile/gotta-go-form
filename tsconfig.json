@@ -19,6 +19,11 @@
         ],
         "moduleResolution": "node",
         "baseUrl": "./",
+        "paths": {
+            "fonts/*": [
+                "./fonts/*"
+            ]
+        },
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,

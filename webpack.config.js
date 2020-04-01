@@ -67,7 +67,7 @@ module.exports = env => {
         resolve: {
             extensions: [".ts", ".tsx", ".js", ".json", ".css"],
             alias: {
-                react: path.resolve("./node_modules/react")
+                fonts: path.resolve(__dirname, "./fonts")
             }
         },
         devServer: {

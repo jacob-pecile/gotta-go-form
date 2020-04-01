@@ -1,6 +1,6 @@
 {
 	"name": "gotta-go-form",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "My attempt at recreating my generic form renderer with Typescript, hooks, and styled components",
 	"main": "lib/index.js",
 	"scripts": {
