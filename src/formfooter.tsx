@@ -44,7 +44,7 @@ export default styled(FormFooter)`
             border-radius: 3px;
             min-width: 80px;
             font-weight: 600;
-            font-family: 'Open Sans', sans-serif;
+            
             user-select: none;
 
             &.primary-btn{

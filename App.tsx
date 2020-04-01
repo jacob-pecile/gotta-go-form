@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Fragment } from 'react';
 import * as ReactDOM from 'react-dom';
 
 import Form from './src/form';
@@ -13,6 +14,17 @@ import {
 	datetime,
 	custom
 } from './examples/fields';
+
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyles: any = createGlobalStyle`
+    @font-face {
+		font-family: 'Open Sans';
+		font-style: normal;
+		src: url('fonts/OpenSans-Regular.ttf') format('truetype');
+	}
+	
+`;
 
 let def: FormDefinition = {
 	sections: [
@@ -41,6 +53,9 @@ let footeractions = [
 ];
 
 ReactDOM.render(
-	<Form formDefinition={def} footerActions={footeractions} showNavbar />,
+	<Fragment>
+		<GlobalStyles />
+		<Form formDefinition={def} footerActions={footeractions} showNavbar />
+	</Fragment>,
 	document.getElementById('app')
 );

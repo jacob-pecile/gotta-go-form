@@ -36,7 +36,7 @@ export default styled(FormCheckBox)`
 
     & > span{
         font-size: 14px;
-        font-family: 'Open Sans', sans-serif;
+        
         user-select: none;
     }
 

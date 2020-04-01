@@ -74,7 +74,7 @@ export default styled(FormSection)`
         & > span{
             font-weight: 600;
             font-size: 24px;
-            font-family: 'Open Sans', sans-serif;
+            
         }
     }
 
