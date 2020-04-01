@@ -55,7 +55,7 @@ export default styled(FormRadioButtonList)`
 
         & > span{
             font-size: 14px;
-            font-family: "Open Sans";
+            font-family: 'Open Sans', sans-serif;
             user-select: none;
             font-weight: 600;
         }
@@ -75,7 +75,7 @@ export default styled(FormRadioButtonList)`
 
             & > span{
                 font-size: 14px;
-                font-family: "Open Sans";
+                font-family: 'Open Sans', sans-serif;
                 user-select: none;
             }
 

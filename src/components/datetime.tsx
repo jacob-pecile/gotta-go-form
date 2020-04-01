@@ -41,7 +41,7 @@ export default styled(FormDateTime)`
 
 	& > span {
 		font-size: 14px;
-		font-family: 'Open Sans';
+		font-family: 'Open Sans', sans-serif;
 		font-weight: 600;
 	}
 

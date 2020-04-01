@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {FooterAction, ButtonType} from './types/eventtypes';
+import { FooterAction, ButtonType } from './types/eventtypes';
 import classNames from 'classnames';
 
-interface FormFooterProps{
+interface FormFooterProps {
     actions: FooterAction[];
     className?: string;
 }
@@ -11,11 +11,11 @@ interface FormFooterProps{
 const FormFooter = (props: FormFooterProps) => {
 
     let actions = props.actions.map((action, i) => (
-        <input key={i} type="button" disabled={action.disabled} className={classNames('footer-btn', 
-                        {'primary-btn': action.type === ButtonType.Primary}, 
-                        {'secondary-btn': action.type === ButtonType.Secondary})}
-                value={action.text}
-                onClick={action.onClick}
+        <input key={i} type="button" disabled={action.disabled} className={classNames('footer-btn',
+            { 'primary-btn': action.type === ButtonType.Primary },
+            { 'secondary-btn': action.type === ButtonType.Secondary })}
+            value={action.text}
+            onClick={action.onClick}
         />
     ));
 
@@ -26,7 +26,7 @@ const FormFooter = (props: FormFooterProps) => {
             </div>
         </div>
     );
-}
+};
 
 export default styled(FormFooter)`
     display: flex;
@@ -44,7 +44,7 @@ export default styled(FormFooter)`
             border-radius: 3px;
             min-width: 80px;
             font-weight: 600;
-            font-family: "Open Sans";
+            font-family: 'Open Sans', sans-serif;
             user-select: none;
 
             &.primary-btn{
@@ -63,4 +63,4 @@ export default styled(FormFooter)`
             }
         }
     }
-`
+`;

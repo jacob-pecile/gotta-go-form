@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-interface NavBarProps{
+interface NavBarProps {
     sections: string[];
     onSectionClick: (sectionIndex: number) => () => void;
     className?: string;
@@ -12,7 +12,7 @@ const NavBar = (props: NavBarProps) => {
     let sections = props.sections.map((section, index) => (
         <div key={index} className="section-step" onClick={props.onSectionClick(index)}>
             <span>{section}</span>
-        </div>    
+        </div>
     ));
 
     return (
@@ -41,7 +41,7 @@ export default styled(NavBar)`
         & > span{
             font-weight: 600;
             font-size: 16px;
-            font-family: "Open Sans"
+            font-family: 'Open Sans', sans-serif
         }
 
         &:hover{

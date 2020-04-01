@@ -59,8 +59,8 @@ export const FormSection = (props: FormSectionProps) => {
                 {fields}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default styled(FormSection)`
     display: flex;
@@ -74,7 +74,7 @@ export default styled(FormSection)`
         & > span{
             font-weight: 600;
             font-size: 24px;
-            font-family: "Open Sans";
+            font-family: 'Open Sans', sans-serif;
         }
     }
 
@@ -87,4 +87,4 @@ export default styled(FormSection)`
         }
     }
 
-`
+`;

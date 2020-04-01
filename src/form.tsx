@@ -63,7 +63,7 @@ export default styled(Form)`
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	font-family: 'Open Sans';
+	font-family: 'Open Sans', sans-serif;
 
 	& > .main-form-content {
 		display: flex;

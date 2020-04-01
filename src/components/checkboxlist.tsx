@@ -62,7 +62,7 @@ export default styled(CheckBoxList)`
 
         & > span{
             font-size: 14px;
-            font-family: "Open Sans";
+            font-family: 'Open Sans', sans-serif;
             user-select: none;
             font-weight: 600;
         }

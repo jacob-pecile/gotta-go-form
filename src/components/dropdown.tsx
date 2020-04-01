@@ -43,7 +43,7 @@ export default styled(FormDropdown)`
 
     & > span{
         font-size: 14px;
-        font-family: "Open Sans"
+        font-family: 'Open Sans', sans-serif
     }
 
     & > .form-dropdown{
