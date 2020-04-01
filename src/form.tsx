@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
     @font-face {
 		font-family: 'Open Sans';
 		font-style: normal;
-		src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+		src: url('./../fonts/OpenSans-Regular.ttf') format('truetype');
 	}
 	
 `;

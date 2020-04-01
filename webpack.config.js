@@ -65,7 +65,10 @@ module.exports = env => {
             envConfig
         ],
         resolve: {
-            extensions: [".ts", ".tsx", ".js", ".json", ".css"]
+            extensions: [".ts", ".tsx", ".js", ".json", ".css"],
+            alias: {
+                react: path.resolve("./node_modules/react")
+            }
         },
         devServer: {
             contentBase: "./",
