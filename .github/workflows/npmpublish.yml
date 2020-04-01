@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
+      - name: install and deploy Form
       - run: npm install
       - run: npm run build:prod
       - run: sh ./scripts/updatePackageVersion.sh ${{ steps.buildnumber.outputs.build_number }}
