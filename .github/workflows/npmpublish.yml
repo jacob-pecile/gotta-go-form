@@ -14,6 +14,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Build Number Generator
+        uses: einaregilsson/build-number@v2
+        with:
+          token: ${{secrets.GITHUB_TOKEN}} 
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -21,7 +25,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm install
       - run: npm run build:prod
-      - run: npm version patch
+      - run: sed -i 's/\"version\": \"0.1.1\"/\"version\": \"0.1.${{ steps.buildnumber.outputs.build_number }}\"/g' package.json
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
