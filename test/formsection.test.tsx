@@ -11,7 +11,7 @@ let section: Section = {
     fields: []
 };
 
-describe('Form Component', () => {
+describe('Form Section Component', () => {
 
     beforeEach(() => {
         section = {
@@ -29,6 +29,15 @@ describe('Form Component', () => {
 
         expect(fieldContainer.childElementCount).toBe(1);
         expect(titleContainer.querySelector('span').textContent).toBe('test');
+    });
+
+    test('simple section with one invisible field', () => {
+        section.fields.push({ ...input, visibility: { isVisible: false, accessors: [], condition: () => false } });
+        render(<FormSection sectionIndex={0} section={section} />);
+
+        let fieldContainer = screen.queryByTestId('form-field-container');
+
+        expect(fieldContainer.querySelector('.form-input-container')).toBeNull();
     });
 
     test('simple section with two fields', () => {

@@ -8,7 +8,7 @@ let fire = jest.fn();
 let fireAgain = jest.fn();
 let footeractions: FooterAction[] = [];
 
-describe('Form Component', () => {
+describe('Form Footer Component', () => {
 
     beforeEach(() => {
         footeractions = [

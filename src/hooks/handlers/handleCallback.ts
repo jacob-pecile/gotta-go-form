@@ -22,7 +22,7 @@ export const handleCallback = (field: FormField, event: any) => {
 const refreshField = (field: FormField) => {
 	field.properties = {
 		...field.properties,
-		InvalidMessage: ''
+		invalidMessage: ''
 	};
 
 	return field;

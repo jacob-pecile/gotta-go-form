@@ -22,8 +22,8 @@ const FormInput = (props: FormInputProps) => {
 				value={field.value === null ? '' : field.value}
 				{...inputProps}
 			/>
-			{field.properties && field.properties.InvalidMessage && (
-				<ErrorMessage message={field.properties.InvalidMessage} />
+			{field.properties && field.properties.invalidMessage && (
+				<ErrorMessage message={field.properties.invalidMessage} />
 			)}
 		</div>
 	);

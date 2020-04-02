@@ -38,8 +38,8 @@ const FormRadioButtonList = (props: FormRadioButtonListProps) => {
             <div className={classNames('radio-list-container')}>
                 {checkboxes}
             </div>
-            {(field.properties && field.properties.InvalidMessage) &&
-                <ErrorMessage message={field.properties.InvalidMessage} />
+            {(field.properties && field.properties.invalidMessage) &&
+                <ErrorMessage message={field.properties.invalidMessage} />
             }
             <span></span>
         </div>

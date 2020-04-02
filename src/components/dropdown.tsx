@@ -30,8 +30,8 @@ const FormDropdown = (props: FormDropdownProps) => {
                 value={valueOption[0]}
                 onChange={field.callback}
             />
-            {(field.properties && field.properties.InvalidMessage) &&
-                <ErrorMessage message={field.properties.InvalidMessage} />
+            {(field.properties && field.properties.invalidMessage) &&
+                <ErrorMessage message={field.properties.invalidMessage} />
             }
         </div>
     );
