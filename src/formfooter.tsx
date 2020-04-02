@@ -8,7 +8,7 @@ interface FormFooterProps {
     className?: string;
 }
 
-const FormFooter = (props: FormFooterProps) => {
+export const FormFooter = (props: FormFooterProps) => {
 
     let actions = props.actions.map((action, i) => (
         <input key={i} type="button" disabled={action.disabled} className={classNames('footer-btn',
@@ -21,7 +21,7 @@ const FormFooter = (props: FormFooterProps) => {
 
     return (
         <div className={props.className}>
-            <div className="footer-action-container">
+            <div className="footer-action-container" data-testid="footer-action-container">
                 {actions}
             </div>
         </div>

@@ -101,6 +101,7 @@ export const custom: types.FormField = {
 	value: '',
 	customComponent: field => (
 		<input
+			data-testid="custom-component"
 			value={field.value}
 			onChange={e => {
 				field.callback(e.target.value);
