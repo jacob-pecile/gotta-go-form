@@ -13,7 +13,7 @@ interface FormProps {
 	formDefinition: FormDefinition;
 	className?: string;
 	footerActions: FooterAction[];
-	showNavbar: boolean;
+	showNavbar?: boolean;
 }
 
 export const Form = (props: FormProps) => {
@@ -35,11 +35,11 @@ export const Form = (props: FormProps) => {
 
 	return (
 		<div className={classNames(className, 'form-container')}>
-			<div className="main-form-content">
+			<div className="main-form-content" data-testid="main-form-content">
 				{showNavbar && (
 					<NavBar sections={titles} onSectionClick={updateCurrentSection} />
 				)}
-				<div className="section-container">{sections}</div>
+				<div className="section-container" data-testid="section-container">{sections}</div>
 			</div>
 			<div className="form-footer">
 				<FormFooter actions={formfooterActions} />

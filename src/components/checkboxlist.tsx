@@ -46,8 +46,8 @@ const CheckBoxList = (props: FormCheckBoxListProps) => {
             <div className={classNames('checkbox-list-container')}>
                 {checkboxes}
             </div>
-            {(field.properties && field.properties.InvalidMessage) &&
-                <ErrorMessage message={field.properties.InvalidMessage} />
+            {(field.properties && field.properties.invalidMessage) &&
+                <ErrorMessage message={field.properties.invalidMessage} />
             }
         </div>
     );

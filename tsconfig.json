@@ -15,7 +15,8 @@
         "jsx": "react",
         "types": [
             "react",
-            "node"
+            "node",
+            "jest"
         ],
         "moduleResolution": "node",
         "baseUrl": "./",

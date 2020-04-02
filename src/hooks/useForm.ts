@@ -60,7 +60,7 @@ export const useForm = (
 		let validatedForm = HandleFormValidation(definition);
 		let isValid =
 			flatten(validatedForm.sections.map(section => section.fields)).filter(
-				field => field.properties && field.properties.InvalidMessage
+				field => field.properties && field.properties.invalidMessage
 			).length === 0;
 		setDefinition({ ...validatedForm });
 
@@ -72,9 +72,9 @@ export const useForm = (
 	footerActions = footerActions.map(action =>
 		action.validate
 			? {
-					...action,
-					onClick: ValidateForm(action.onClick)
-			  }
+				...action,
+				onClick: ValidateForm(action.onClick)
+			}
 			: action
 	);
 

@@ -13,23 +13,18 @@ interface FormDateTimeProps {
 
 const FormDateTime = (props: FormDateTimeProps) => {
 	let { field } = props;
-	let { format } = field.properties;
 
-	let datePickerProps = field.properties
-		? field.properties.datePickerProps
-		: null;
 
 	return (
 		<div className={classNames('form-datetime', props.className)}>
 			<span>{field.title}</span>
 			<DateTimePicker
-				format={format}
 				onChange={field.callback}
 				value={field.value}
-				{...datePickerProps}
+				{...field.properties}
 			/>
-			{field.properties && field.properties.InvalidMessage && (
-				<ErrorMessage message={field.properties.InvalidMessage} />
+			{field.properties && field.properties.invalidMessage && (
+				<ErrorMessage message={field.properties.invalidMessage} />
 			)}
 		</div>
 	);

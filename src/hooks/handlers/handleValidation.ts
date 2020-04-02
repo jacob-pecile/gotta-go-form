@@ -23,7 +23,7 @@ export const HandleSectionValidation = (
 	section.fields = section.fields.map((field: FormField) => {
 		field.properties = {
 			...field.properties,
-			InvalidMessage: handleValidation(field, allFields)
+			invalidMessage: handleValidation(field, allFields)
 		};
 
 		return field;
@@ -66,8 +66,8 @@ const isFieldEmpty = (field: FormField) => {
 
 	let isEmptyCalculator = {
 		[FormType.Custom]: () => !value,
-		[FormType.Input]: () => value === '',
-		[FormType.TextArea]: () => value === '',
+		[FormType.Input]: () => value === '' || value === null || value === undefined,
+		[FormType.TextArea]: () => value === '' || value === null || value === undefined,
 		[FormType.DropDown]: () => !value || value === 0,
 		[FormType.RadioButtonList]: () => !value || value === 0,
 		[FormType.DateTime]: () => !value

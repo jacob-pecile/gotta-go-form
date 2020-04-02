@@ -16,14 +16,7 @@ export const checkbox: types.FormField = {
 	accessor: 'checkbox',
 	type: types.FormType.Checkbox,
 	callback: e => console.log(e),
-	value: false,
-	observer: {
-		observables: ['dropdown', 'input'],
-		observerFunction: (checkbox, dropdown, input) => {
-			checkbox.value = input.value === 'o' && dropdown.value === 3;
-			return checkbox;
-		}
-	}
+	value: false
 };
 
 export const dropdown: types.FormField = {
@@ -37,12 +30,7 @@ export const dropdown: types.FormField = {
 		{ value: 2, label: 'go' },
 		{ value: 3, label: 'fast' }
 	],
-	mandatoryMessage: 'pick something',
-	validation: {
-		accessors: [],
-		validate: field => field.value === 2,
-		errorMessage: 'you have to select the second option'
-	}
+	mandatoryMessage: 'pick something'
 };
 
 export const checkboxlist: types.FormField = {
@@ -90,7 +78,7 @@ export const datetime: types.FormField = {
 	type: types.FormType.DateTime,
 	callback: e => console.log(e),
 	value: '',
-	properties: { format: null }
+	properties: { format: 'MM-dd-yyyy' }
 };
 
 export const custom: types.FormField = {
@@ -101,6 +89,7 @@ export const custom: types.FormField = {
 	value: '',
 	customComponent: field => (
 		<input
+			data-testid="custom-component"
 			value={field.value}
 			onChange={e => {
 				field.callback(e.target.value);

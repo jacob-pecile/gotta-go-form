@@ -52,10 +52,10 @@ export const FormSection = (props: FormSectionProps) => {
 
     return (
         <div id={`form-section-${sectionIndex}`} className={classNames(props.className, 'form-section')} >
-            <div className="section-title-container">
+            <div className="section-title-container" data-testid="section-title-container">
                 <span>{section.title}</span>
             </div>
-            <div className="form-field-container">
+            <div className="form-field-container" data-testid="form-field-container">
                 {fields}
             </div>
         </div>

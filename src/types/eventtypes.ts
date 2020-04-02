@@ -1,7 +1,7 @@
 interface ButtonProps {
     text: string;
     disabled?: boolean;
-    type: ButtonType;
+    type: ButtonType | 'Primary' | 'Secondary';
     onClick: () => void;
 }
 
