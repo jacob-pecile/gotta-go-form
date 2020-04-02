@@ -100,7 +100,7 @@ interface FormField {
 	observer?: Observer;
 }
 
-export interface FormOptions {
+interface FormOptions {
 	value: number | string;
 	label: string;
 }
@@ -143,7 +143,7 @@ The message you want to display below the field if the user submits the form whi
 Sometimes you want fields to hidden in certain circumstances. YOu can define this with the visibility property
 
 ```
-export interface Visibility {
+interface Visibility {
 	accessors: string[];
 	condition: (...dependantValues: any[]) => boolean;
 }
@@ -163,7 +163,7 @@ For example you might want an endtime field that immediately sets itself to 15 m
 You can add this logic to your form using the observer property. 
 
 ```
-export interface Observer {
+interface Observer {
 	observables: string[];
 	observerFunction: (
 		observer: FormField,
@@ -187,7 +187,7 @@ You'll likely want some global actions to take on your form. You do this by defi
 Each of these actions will become a button in the footer of this form.
 
 ```
-export interface FooterAction {
+interface FooterAction {
     text: string; //the test displayed on the button
     disabled?: boolean;
     type: 'Primary' | 'Secondary'; 
