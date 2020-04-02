@@ -23,6 +23,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: echo "Build number is $BUILD_NUMBER"
       - run: npm install
+      - run: npm run test
       - run: npm run build:prod
       - run: sh ./scripts/updatePackageVersion.sh $BUILD_NUMBER
       - run: npm publish --access public
