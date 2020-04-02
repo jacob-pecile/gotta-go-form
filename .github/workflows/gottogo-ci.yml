@@ -1,21 +1,13 @@
 name: Publish
 
 on:
-  push:
+  pull_request:
     branches: [ master ]
-    paths-ignore:
-    - 'README.md'
-    - 'examples/**'
-    - 'App.js'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Build Number Generator
-        uses: einaregilsson/build-number@v2
-        with:
-          token: ${{secrets.GITHUB_TOKEN}} 
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
@@ -23,8 +15,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: echo "Build number is $BUILD_NUMBER"
       - run: npm install
-      - run: npm run build:prod
-      - run: sh ./scripts/updatePackageVersion.sh $BUILD_NUMBER
-      - run: npm publish --access public
+      - run: npm run test
+      - run: npm run build 
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
