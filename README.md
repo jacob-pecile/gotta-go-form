@@ -129,13 +129,13 @@ interface Validation {
 ```
 gotta-go-form's validation allows for validation of varying complications.
 
-###### accessors
+##### accessors
 Sometimes your validation might be dependant on the values of other fields. If that is the case put the accessors of the dependant fields here. 
 
-###### validate
+##### validate
 The function used to validate your field. THe entire field obejct if always be passed as the first parameter to this function. All dependant fields specified in the accessors property will be passed in as supplementary parameters. **These supplementary fields will be passed in the order specified in accessors**
 
-###### errorMessage
+##### errorMessage
 The message you want to display below the field if the user submits the form while this field is invalid
 
 
@@ -148,10 +148,10 @@ export interface Visibility {
 	condition: (...dependantValues: any[]) => boolean;
 }
 ```
-###### accessors
+##### accessors
 the accessors of the fields that the current field needs to know the value of to determine whether it should be visible or not
 
-###### condition
+##### condition
 A function that returns a boolean based on the values of the dependant fields
 **The passed in values will be passed in the order specified in accessors**
 
@@ -174,13 +174,45 @@ export interface Observer {
 
 Adding this property turns your field into an observer who is watching for when other fields change
 
-###### observables
+##### observables
 The accessors of the fields you want this field to observe.
 
-###### observerFunction
+##### observerFunction
 This function will be called if the value of any of the observed fields change. The current (observer) field will be passed in as the first parameter and all observables will be passed in as supplementary parameters.
 
 This function should update and return the observer field.
+
+### Footer Actions
+You'll likely want some global actions to take on your form. You do this by defining footer actions.
+Each of these actions will become a button in the footer of this form.
+
+```
+export interface FooterAction {
+    text: string; //the test displayed on the button
+    disabled?: boolean;
+    type: 'Primary' | 'Secondary'; 
+    validate?: boolean; 
+    onClick: () => void; 
+}
+```
+
+##### Validate
+If you want to form to to be validated before it takes the action specified in the onClick function simply set the validate property to true. If the form is invalid then the error messages will be updated and the onClick function will not be called.
+
+It's important to note that right now the form does not have an understanding of "submission" and thus you cannot get the current state of the form. 
+
+**You must update your own state upon the execution of the callbacks for each field**
+
+# Future Versions
+Right now gotta-go-form has enough for you to start creating forms, but there are more features planned to the release of version 1.0.0
+
+- horizonatal layout properties
+- "submission" (making onchange methods nullable)
+- simplifying the validation, visibility, and observer API (making accessors nullable)
+- optional header component
+- managing validation for only "dirty" fields
+- make value nullable
+- allowing for multiple validation functions for one field
 
 # third party libraries
 Datetime component built using : [react-datetime-picker](https://github.com/wojtekmaj/react-datetime-picker)
