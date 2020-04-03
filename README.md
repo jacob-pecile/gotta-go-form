@@ -214,8 +214,6 @@ For example, if you have a form with two inputs whose accessors are 'username' a
 # Future Versions
 Right now gotta-go-form has enough for you to start creating forms, but there are more features planned, includeing:
 
-- horizonatal layout properties
-- optional header component
 - managing validation for only "dirty" fields
 
 # third party libraries
