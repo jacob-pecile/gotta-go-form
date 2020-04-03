@@ -18,7 +18,7 @@ export interface FormField {
 	properties?: any;
 	customComponent?: (field: FormField) => JSX.Element;
 	mandatoryMessage?: string;
-	validation?: Validation;
+	validation?: Validation | Validation[];
 	visibility?: Visibility;
 	observer?: Observer;
 }
@@ -45,7 +45,7 @@ export interface FormOptions {
 }
 
 export interface Validation {
-	accessors: string[];
+	accessors?: string[];
 	validate: (
 		currentField: FormField,
 		...dependantFields: FormField[]

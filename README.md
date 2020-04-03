@@ -95,7 +95,7 @@ interface FormField {
 	properties?: any; //optional properties specific to your field type i.e. the format of your datetime picker
 	customComponent?: (field: FormField) => JSX.Element;
 	mandatoryMessage?: string;
-	validation?: Validation;
+	validation?: Validation | Validation[];
 	visibility?: Visibility;
 	observer?: Observer;
 }
@@ -119,7 +119,7 @@ If your validation is more complicated than that you will need to add a more com
 
 ```
 interface Validation {
-	accessors: string[];
+	accessors?: string[];
 	validate: (
 		currentField: FormField,
 		...dependantFields: FormField[]
@@ -211,15 +211,11 @@ For example, if you have a form with two inputs whose accessors are 'username' a
 ```
 
 # Future Versions
-Right now gotta-go-form has enough for you to start creating forms, but there are more features planned to the release of version 1.0.0
+Right now gotta-go-form has enough for you to start creating forms, but there are more features planned, includeing:
 
 - horizonatal layout properties
-- "submission" (making onchange methods nullable)
-- simplifying the validation, visibility, and observer API (making accessors nullable)
 - optional header component
 - managing validation for only "dirty" fields
-- make value nullable
-- allowing for multiple validation functions for one field
 
 # third party libraries
 Datetime component built using : [react-datetime-picker](https://github.com/wojtekmaj/react-datetime-picker)

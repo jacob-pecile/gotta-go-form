@@ -62,7 +62,7 @@ describe('Form Hook test', () => {
         expect(renderReadyInput.isDirty).toBeFalsy();
         expect(formfooterActions.length).toBe(2);
         expect(formfooterActions[0].onClick).not.toBe(submit);
-        expect(formfooterActions[1].onClick).toBe(print);
+        expect(formfooterActions[1].onClick).not.toBe(print);
 
         act(() => {
             renderReadyInput.callback({ target: { value: 't' } });
@@ -97,7 +97,6 @@ describe('Form Hook test', () => {
 
     test('simple form, validation', () => {
         def.sections[0].fields[0].validation = {
-            accessors: [],
             validate: field => field.value === 'test',
             errorMessage: 'failed validation'
         };
@@ -113,6 +112,63 @@ describe('Form Hook test', () => {
         });
 
         expect(renderReadyInput.properties.invalidMessage).toBe('failed validation');
+
+        expect(submit).not.toBeCalled();
+    });
+
+    test('simple form, dependant validation', () => {
+        def.sections[0].fields[0].validation = {
+            accessors: ['checkbox'],
+            validate: (field, checkbox) =>
+                field.value === 'test' && checkbox.value,
+            errorMessage: 'failed validation'
+        };
+        def.sections[0].fields[0].value = 'test';
+        def.sections[0].fields.push(checkbox);
+
+        let { result } = renderHook(() => useForm(def, actions));
+        let { definition, formfooterActions } = result.current;
+
+        let renderReadyInput = definition.sections[0].fields[0];
+        let renderReadyCheckbox = definition.sections[0].fields[1];
+
+        act(() => {
+            formfooterActions[0].onClick();
+        });
+
+        expect(renderReadyInput.properties.invalidMessage).toBe('failed validation');
+
+        expect(submit).not.toBeCalled();
+
+        act(() => {
+            renderReadyCheckbox.callback({ value: true });
+            formfooterActions[0].onClick();
+        });
+
+        expect(renderReadyInput.properties.invalidMessage).toBeFalsy();
+        expect(submit).toBeCalled();
+    });
+
+    test('simple form, multi validation', () => {
+        def.sections[0].fields[0].validation = [{
+            validate: (currentField) => currentField.value[0] === 's',
+            errorMessage: 'input must start with a s'
+        }, {
+            validate: (currentField) => currentField.value[currentField.value.length - 1] === 'w',
+            errorMessage: 'input must end with a w'
+        }];
+        def.sections[0].fields[0].value = 'sss';
+
+        let { result } = renderHook(() => useForm(def, actions));
+        let { definition, formfooterActions } = result.current;
+
+        let renderReadyInput = definition.sections[0].fields[0];
+
+        act(() => {
+            formfooterActions[0].onClick();
+        });
+
+        expect(renderReadyInput.properties.invalidMessage).toBe('input must end with a w');
 
         expect(submit).not.toBeCalled();
     });

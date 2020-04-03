@@ -9,13 +9,17 @@ import {
 import { handleObserver, updateObservers } from './handlers/handleObservers';
 
 import { FormDefinition, FormIndex } from '../types/formtypes';
-import { FooterAction } from '../types/eventtypes';
+import { FooterAction, WrappedFooterAction } from '../types/eventtypes';
 import { flatten } from 'lodash';
 
 export const useForm = (
 	form: FormDefinition,
 	footerActions: FooterAction[]
-) => {
+): {
+	definition: FormDefinition,
+	moveToSection: (sectionNumber: number) => () => void,
+	formfooterActions: WrappedFooterAction[]
+} => {
 	const [definition, setDefinition] = useState(form);
 
 	let allFields = flatten(definition.sections.map(section => section.fields));
@@ -77,7 +81,7 @@ export const useForm = (
 		}
 	};
 
-	footerActions = footerActions.map(action => ({
+	let formfooterActions = footerActions.map(action => ({
 		...action,
 		onClick: action.validate ? ValidateForm(action.onClick) : () => action.onClick(createFormObject())
 	}));
@@ -85,6 +89,6 @@ export const useForm = (
 	return {
 		definition,
 		moveToSection,
-		formfooterActions: footerActions
+		formfooterActions
 	};
 };

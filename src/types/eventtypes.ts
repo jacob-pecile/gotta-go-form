@@ -9,6 +9,10 @@ export interface FooterAction extends ButtonProps {
     validate?: boolean;
 }
 
+export interface WrappedFooterAction extends FooterAction {
+    onClick: () => void;
+}
+
 export enum ButtonType {
     Primary = 'Primary',
     Secondary = 'Secondary'
