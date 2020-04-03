@@ -1,9 +1,10 @@
 export interface FormDefinition {
+	title?: string;
 	sections: Section[];
 }
 
 export interface Section {
-	title: string;
+	title?: string;
 	fields: FormField[];
 }
 
@@ -11,16 +12,17 @@ export interface FormField {
 	title: string;
 	accessor: string;
 	type: FormType;
-	callback: (e: any) => void;
+	callback?: (e: any) => void;
 	isDirty?: boolean;
-	value: any;
+	value?: any;
 	options?: FormOptions[];
 	properties?: any;
 	customComponent?: (field: FormField) => JSX.Element;
 	mandatoryMessage?: string;
-	validation?: Validation;
+	validation?: Validation | Validation[];
 	visibility?: Visibility;
 	observer?: Observer;
+	fieldWidthPercentage?: number;
 }
 
 export enum FormType {
@@ -45,7 +47,7 @@ export interface FormOptions {
 }
 
 export interface Validation {
-	accessors: string[];
+	accessors?: string[];
 	validate: (
 		currentField: FormField,
 		...dependantFields: FormField[]

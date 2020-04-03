@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FooterAction, ButtonType } from './types/eventtypes';
-import classNames from 'classnames';
 
 interface FormFooterProps {
     actions: FooterAction[];
@@ -10,10 +9,15 @@ interface FormFooterProps {
 
 export const FormFooter = (props: FormFooterProps) => {
 
+    let btnTypeCalculator = {
+        [ButtonType.Primary]: 'primary-btn',
+        [ButtonType.Secondary]: 'secondary-btn',
+    };
+
     let actions = props.actions.map((action, i) => (
-        <input key={i} type="button" disabled={action.disabled} className={classNames('footer-btn',
-            { 'primary-btn': action.type === ButtonType.Primary },
-            { 'secondary-btn': action.type === ButtonType.Secondary })}
+        <input key={i}
+            type="button" disabled={action.disabled}
+            className={`footer-btn ${btnTypeCalculator[action.type]}`}
             value={action.text}
             onClick={action.onClick}
         />
@@ -44,7 +48,7 @@ export default styled(FormFooter)`
             border-radius: 3px;
             min-width: 80px;
             font-weight: 600;
-            
+
             user-select: none;
 
             &.primary-btn{

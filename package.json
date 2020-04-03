@@ -1,6 +1,6 @@
 {
 	"name": "gotta-go-form",
-	"version": "0.1.1",
+	"version": "1.0.0",
 	"description": "A generic form renderer with Typescript, hooks, and styled components",
 	"main": "lib/index.js",
 	"scripts": {
@@ -23,7 +23,6 @@
 	"dependencies": {
 		"@mdi/js": "4.2.95",
 		"@mdi/react": "1.2.1",
-		"classnames": "2.2.6",
 		"lodash": "4.17.15",
 		"moment": "2.24.0",
 		"react-datepicker": "2.10.1",

@@ -38,19 +38,24 @@ export const handleValidation = (field: FormField, allFields: FormField[]) => {
 	}
 
 	if (field.validation) {
-		let { validate, accessors, errorMessage } = field.validation;
+		let validationRules = flatten([field.validation]);
 
-		let dependantFields = allFields
-			.filter(
-				(otherField: FormField) => accessors.indexOf(otherField.accessor) >= 0
-			)
-			.sort(
-				(a, b) => accessors.indexOf(a.accessor) - accessors.indexOf(b.accessor)
-			);
+		for (let rule of validationRules) {
+			let { validate, accessors, errorMessage } = rule;
+			accessors = accessors || [];
 
-		if (!validate(field, ...dependantFields)) {
-			field.validation.evaluation = false;
-			return errorMessage;
+			let dependantFields = allFields
+				.filter(
+					(otherField: FormField) => accessors.indexOf(otherField.accessor) >= 0
+				)
+				.sort(
+					(a, b) => accessors.indexOf(a.accessor) - accessors.indexOf(b.accessor)
+				);
+
+			if (!validate(field, ...dependantFields)) {
+				rule.evaluation = false;
+				return errorMessage;
+			}
 		}
 	}
 

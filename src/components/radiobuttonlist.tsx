@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
-import classNames from 'classnames';
 import ErrorMessage from './metaForm/errorMessage';
 
 import Icon from '@mdi/react';
@@ -19,11 +18,23 @@ const FormRadioButtonList = (props: FormRadioButtonListProps) => {
         field.callback({ value });
     };
 
-    let checkboxes = field.options.map((opt, i) => {
+    let onKeyPress = (value: number | string) => (e) => {
+        if (e.which === 13) {
+            field.callback({ value });
+        }
+    };
+
+    let radiobuttons = field.options.map((opt, i) => {
         let path = field.value === opt.value ? mdiRadioboxMarked : mdiRadioboxBlank;
 
         return (
-            <div key={i} className="radio-button" onClick={onClick(opt.value)}>
+            <div
+                key={i}
+                className="radio-button"
+                onClick={onClick(opt.value)}
+                tabIndex={0}
+                onKeyPress={onKeyPress(opt.value)}
+            >
                 <Icon path={path} color="@#1f1f1f" />
                 <span>{opt.label}</span>
             </div>
@@ -35,8 +46,8 @@ const FormRadioButtonList = (props: FormRadioButtonListProps) => {
             <div className="radio-list-title">
                 <span>{field.title}</span>
             </div>
-            <div className={classNames('radio-list-container')}>
-                {checkboxes}
+            <div className="radio-list-container">
+                {radiobuttons}
             </div>
             {(field.properties && field.properties.invalidMessage) &&
                 <ErrorMessage message={field.properties.invalidMessage} />
@@ -87,4 +98,4 @@ export default styled(FormRadioButtonList)`
         }
     }
     
-`
+`;

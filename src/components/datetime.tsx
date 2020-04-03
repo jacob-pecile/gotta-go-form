@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
-import classNames from 'classnames';
 import ErrorMessage from './metaForm/errorMessage';
 
 import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
@@ -16,7 +15,7 @@ const FormDateTime = (props: FormDateTimeProps) => {
 
 
 	return (
-		<div className={classNames('form-datetime', props.className)}>
+		<div className={`form-datetime ${props.className}`}>
 			<span>{field.title}</span>
 			<DateTimePicker
 				onChange={field.callback}

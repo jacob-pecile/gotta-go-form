@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Section, FormType, FormField } from './types/formtypes';
 import styled from 'styled-components';
-import classNames from 'classnames';
 
 import {
     FormInput,
@@ -26,10 +25,6 @@ export const FormSection = (props: FormSectionProps) => {
 
     const renderField = (field: FormField, fieldIndex: number) => {
 
-        if (field.visibility && !field.visibility.isVisible) {
-            return null;
-        }
-
         let fieldComponent = {
             [FormType.Custom]: field.customComponent && field.customComponent(field),
             [FormType.Input]: <FormInput key={fieldIndex} field={field} {...field.properties} />,
@@ -44,17 +39,18 @@ export const FormSection = (props: FormSectionProps) => {
         return fieldComponent[field.type];
     };
 
-    let fields = section.fields.map((field, index) =>
-        <div key={index} className="field-container">
+    let fields = section.fields.filter(field => (!field.visibility || field.visibility.isVisible)).map((field, index) =>
+        <div key={index} className="field-container"
+            style={{ width: `calc(${field.fieldWidthPercentage || 100}% - 16px)` }}>
             {renderField(field, index)}
         </div>
     );
 
     return (
-        <div id={`form-section-${sectionIndex}`} className={classNames(props.className, 'form-section')} >
-            <div className="section-title-container" data-testid="section-title-container">
+        <div id={`form-section-${sectionIndex}`} className={`${props.className} form-section`} >
+            {section.title && <div className="section-title-container" data-testid="section-title-container">
                 <span>{section.title}</span>
-            </div>
+            </div>}
             <div className="form-field-container" data-testid="form-field-container">
                 {fields}
             </div>
@@ -65,6 +61,7 @@ export const FormSection = (props: FormSectionProps) => {
 export default styled(FormSection)`
     display: flex;
     flex-direction: column;
+    width: 100%;
     margin: 0px 8px;
 
     & > .section-title-container{
@@ -73,17 +70,25 @@ export default styled(FormSection)`
 
         & > span{
             font-weight: 600;
-            font-size: 24px;
-            
+            font-size: 16px;
         }
     }
 
     & > .form-field-container{
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
 
         & > .field-container{
-            margin-bottom: 16px;
+            margin: 8px;
+            align-self: center;    
+            min-height: 30px;
+            align-items: center;
+            display: flex;
+
+            & > *{
+                flex: 1
+            }
         }
     }
 

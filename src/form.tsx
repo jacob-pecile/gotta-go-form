@@ -5,8 +5,8 @@ import { FooterAction } from './types/eventtypes';
 import FormSection from './formsection';
 import NavBar from './components/navigation/navbar';
 import FormFooter from './formfooter';
+import FormHeader from './formHeader';
 
-import classNames from 'classnames';
 import styled from 'styled-components';
 
 interface FormProps {
@@ -14,11 +14,12 @@ interface FormProps {
 	className?: string;
 	footerActions: FooterAction[];
 	showNavbar?: boolean;
+	Header?: () => JSX.Element;
 }
 
 export const Form = (props: FormProps) => {
-	let { formDefinition, className, footerActions, showNavbar } = props;
-	let { definition, updateCurrentSection, formfooterActions } = useForm(
+	let { formDefinition, className, footerActions, showNavbar, Header } = props;
+	let { definition, moveToSection, formfooterActions } = useForm(
 		formDefinition,
 		footerActions
 	);
@@ -34,17 +35,20 @@ export const Form = (props: FormProps) => {
 	let titles = formDefinition.sections.map(section => section.title);
 
 	return (
-		<div className={classNames(className, 'form-container')}>
-			<div className="main-form-content" data-testid="main-form-content">
+		<div className={`${className} form-container`}>
+			<div className="main-form-window" data-testid="main-form-content">
 				{showNavbar && (
-					<NavBar sections={titles} onSectionClick={updateCurrentSection} />
+					<NavBar sections={titles} onSectionClick={moveToSection} />
 				)}
-				<div className="section-container" data-testid="section-container">{sections}</div>
+				<div className="main-form-container" data-testid="main-form-container">
+					{Header ? <Header /> : <FormHeader title={formDefinition.title} />}
+					<div className="section-container" data-testid="section-container">{sections}</div>
+				</div>
 			</div>
 			<div className="form-footer">
 				<FormFooter actions={formfooterActions} />
 			</div>
-		</div>
+		</div >
 	);
 };
 
@@ -54,13 +58,22 @@ export default styled(Form)`
 	height: 100%;
 	font-family: 'Open Sans', Arial, sans-serif;
 
-	& > .main-form-content {
+	& > .main-form-window {
 		display: flex;
 		height: calc(100% - 52px);
 
-		& > .section-container {
+		& > .main-form-container{
+			display: flex;
+			flex-direction: column;
 			flex: 1;
 			height: 100%;
+
+			& > .section-container {
+				display: flex;
+				flex: 1
+			}
 		}
+
+
 	}
 `;

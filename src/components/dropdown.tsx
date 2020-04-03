@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
-import classNames from 'classnames';
 import ErrorMessage from './metaForm/errorMessage';
 
 import Select from 'react-select';
@@ -17,18 +16,16 @@ const FormDropdown = (props: FormDropdownProps) => {
 
     let valueOption = field.options.filter(opt => opt.value === field.value);
 
-    if (field.value !== null && !valueOption.length) {
-        return null;
-    }
-
     return (
-        <div className={classNames('form-dropdown-container', className)}>
+        <div className={`form-dropdown-container ${className}`}>
             <span>{field.title}</span>
             <Select
                 className="form-dropdown"
                 options={field.options}
                 value={valueOption[0]}
-                onChange={field.callback}
+                onChange={field.callback} styles={{
+                    control: styles => ({ ...styles, border: '1px solid #1f1f1f' })
+                }}
             />
             {(field.properties && field.properties.invalidMessage) &&
                 <ErrorMessage message={field.properties.invalidMessage} />

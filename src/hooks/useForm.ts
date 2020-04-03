@@ -9,16 +9,28 @@ import {
 import { handleObserver, updateObservers } from './handlers/handleObservers';
 
 import { FormDefinition, FormIndex } from '../types/formtypes';
-import { FooterAction } from '../types/eventtypes';
+import { FooterAction, WrappedFooterAction } from '../types/eventtypes';
 import { flatten } from 'lodash';
 
 export const useForm = (
 	form: FormDefinition,
 	footerActions: FooterAction[]
-) => {
+): {
+	definition: FormDefinition,
+	moveToSection: (sectionNumber: number) => () => void,
+	formfooterActions: WrappedFooterAction[]
+} => {
 	const [definition, setDefinition] = useState(form);
 
 	let allFields = flatten(definition.sections.map(section => section.fields));
+
+	const createFormObject = () => {
+		let formObject = {};
+		allFields.forEach(field => {
+			formObject[field.accessor] = field.value;
+		});
+		return formObject;
+	};
 
 	useEffect(() => {
 		definition.sections.forEach((section, sectionIndex) =>
@@ -51,12 +63,12 @@ export const useForm = (
 		callback(event);
 	};
 
-	const updateCurrentSection = (sectionNumber: number) => () => {
+	const moveToSection = (sectionNumber: number) => () => {
 		let element = document.getElementById(`form-section-${sectionNumber}`);
 		element.scrollIntoView();
 	};
 
-	const ValidateForm = (submitCallback: () => void = null) => () => {
+	const ValidateForm = (submitCallback: (result: any) => void = null) => () => {
 		let validatedForm = HandleFormValidation(definition);
 		let isValid =
 			flatten(validatedForm.sections.map(section => section.fields)).filter(
@@ -65,23 +77,18 @@ export const useForm = (
 		setDefinition({ ...validatedForm });
 
 		if (isValid) {
-			submitCallback();
+			submitCallback(createFormObject());
 		}
 	};
 
-	footerActions = footerActions.map(action =>
-		action.validate
-			? {
-				...action,
-				onClick: ValidateForm(action.onClick)
-			}
-			: action
-	);
+	let formfooterActions = footerActions.map(action => ({
+		...action,
+		onClick: action.validate ? ValidateForm(action.onClick) : () => action.onClick(createFormObject())
+	}));
 
 	return {
 		definition,
-		updateCurrentSection,
-		ValidateForm,
-		formfooterActions: footerActions
+		moveToSection,
+		formfooterActions
 	};
 };

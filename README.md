@@ -89,15 +89,16 @@ interface FormField {
 	title: string;  //the name of your field
 	accessor: string; //the unique identifier of your field
 	type: FormType; 
-	callback: (e: any) => void; //the function to be called on change of your field
-	value: any;
+	callback?: (e: any) => void; //the function to be called on change of your field
+	value?: any;
 	options?: FormOptions[]; //the potential values of your field (used by DropDown, RadioButtonList, and CheckBoxList)
 	properties?: any; //optional properties specific to your field type i.e. the format of your datetime picker
 	customComponent?: (field: FormField) => JSX.Element;
 	mandatoryMessage?: string;
-	validation?: Validation;
+	validation?: Validation | Validation[];
 	visibility?: Visibility;
 	observer?: Observer;
+	fieldWidthPercentage?: number; // the percentage of the row you want this field to take up. Default is 100.
 }
 
 interface FormOptions {
@@ -119,7 +120,7 @@ If your validation is more complicated than that you will need to add a more com
 
 ```
 interface Validation {
-	accessors: string[];
+	accessors?: string[];
 	validate: (
 		currentField: FormField,
 		...dependantFields: FormField[]
@@ -192,27 +193,30 @@ interface FooterAction {
     disabled?: boolean;
     type: 'Primary' | 'Secondary'; 
     validate?: boolean; 
-    onClick: () => void; 
+    onClick: (result: any) => void; 
 }
 ```
 
 ##### Validate
 If you want to form to to be validated before it takes the action specified in the onClick function simply set the validate property to true. If the form is invalid then the error messages will be updated and the onClick function will not be called.
 
-It's important to note that right now the form does not have an understanding of "submission" and thus you cannot get the current state of the form. 
+##### onClick
+All onClick functions will be passed an object containing all the values of the form.
+For example, if you have a form with two inputs whose accessors are 'username' and 'password' respectively, you should expect an object like this:
 
-**You must update your own state upon the execution of the callbacks for each field**
+```
+{
+    username: 'jacob-pecile'
+    password: 'nicetryguy'
+}
+```
 
 # Future Versions
-Right now gotta-go-form has enough for you to start creating forms, but there are more features planned to the release of version 1.0.0
+Right now gotta-go-form has enough for you to start creating forms, but there are more features planned, includeing:
 
 - horizonatal layout properties
-- "submission" (making onchange methods nullable)
-- simplifying the validation, visibility, and observer API (making accessors nullable)
 - optional header component
 - managing validation for only "dirty" fields
-- make value nullable
-- allowing for multiple validation functions for one field
 
 # third party libraries
 Datetime component built using : [react-datetime-picker](https://github.com/wojtekmaj/react-datetime-picker)

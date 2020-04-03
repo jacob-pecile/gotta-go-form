@@ -7,7 +7,7 @@ interface ErrorMessageProps {
 }
 
 const ErrorMessage = (props: ErrorMessageProps) => (
-    <span className={props.className}>{props.message}</span>
+    <span className={`${props.className} error-message`}>{props.message}</span>
 );
 
 export default styled(ErrorMessage)`

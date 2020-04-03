@@ -6,17 +6,17 @@ export const input: types.FormField = {
 	accessor: 'input',
 	type: types.FormType.Input,
 	callback: e => console.log(e.target.value),
-	value: '',
 	mandatoryMessage: 'please put something here',
-	properties: { inputProps: { maxLength: 5 } }
+	properties: { inputProps: { maxLength: 5 } },
+	fieldWidthPercentage: 50
 };
 
 export const checkbox: types.FormField = {
 	title: 'CheckBox',
 	accessor: 'checkbox',
 	type: types.FormType.Checkbox,
-	callback: e => console.log(e),
-	value: false
+	callback: e => (null),
+	fieldWidthPercentage: 50
 };
 
 export const dropdown: types.FormField = {
@@ -24,7 +24,6 @@ export const dropdown: types.FormField = {
 	accessor: 'dropdown',
 	type: types.FormType.DropDown,
 	callback: e => console.log(e),
-	value: null,
 	options: [
 		{ value: 1, label: 'gotta' },
 		{ value: 2, label: 'go' },
@@ -38,7 +37,6 @@ export const checkboxlist: types.FormField = {
 	accessor: 'checkboxlist',
 	type: types.FormType.CheckboxList,
 	callback: e => console.log(e),
-	value: [],
 	properties: { layout: 'horizontal' },
 	options: [
 		{ value: 1, label: 'gotta' },
@@ -57,7 +55,7 @@ export const radiolist: types.FormField = {
 	accessor: 'radiolist',
 	type: types.FormType.RadioButtonList,
 	callback: e => console.log(e),
-	value: null,
+	value: 2,
 	properties: { layout: 'horizontal' },
 	options: [
 		{ value: 1, label: 'gotta' },
@@ -67,7 +65,7 @@ export const radiolist: types.FormField = {
 	validation: {
 		accessors: ['checkboxlist'],
 		validate: (field, checkboxListField) =>
-			field.value && field.value === 2 && checkboxListField.value[0] === 2,
+			field.value && field.value === 2 && checkboxListField.value && checkboxListField.value.indexOf(2) >= 0,
 		errorMessage: 'you have to select the second option in two places'
 	}
 };
@@ -77,7 +75,6 @@ export const datetime: types.FormField = {
 	accessor: 'datetime',
 	type: types.FormType.DateTime,
 	callback: e => console.log(e),
-	value: '',
 	properties: { format: 'MM-dd-yyyy' }
 };
 
@@ -86,7 +83,6 @@ export const custom: types.FormField = {
 	accessor: 'custom',
 	type: types.FormType.Custom,
 	callback: e => console.log(e),
-	value: '',
 	customComponent: field => (
 		<input
 			data-testid="custom-component"

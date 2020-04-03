@@ -27,9 +27,9 @@ const GlobalStyles: any = createGlobalStyle`
 `;
 
 let def: FormDefinition = {
+	title: 'My Form',
 	sections: [
 		{
-			title: 'test',
 			fields: [
 				input,
 				checkbox,
@@ -48,14 +48,14 @@ let footeractions = [
 		text: 'Submit',
 		type: 'Primary',
 		validate: true,
-		onClick: () => console.log('Submitted')
+		onClick: (form) => console.log(form)
 	}
 ];
 
 ReactDOM.render(
 	<Fragment>
 		<GlobalStyles />
-		<Form formDefinition={def} footerActions={footeractions} showNavbar />
+		<Form formDefinition={def} footerActions={footeractions} />
 	</Fragment>,
 	document.getElementById('app')
 );
