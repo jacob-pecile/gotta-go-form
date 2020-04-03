@@ -20,6 +20,14 @@ export const useForm = (
 
 	let allFields = flatten(definition.sections.map(section => section.fields));
 
+	const createFormObject = () => {
+		let formObject = {};
+		allFields.forEach(field => {
+			formObject[field.accessor] = field.value;
+		});
+		return formObject;
+	};
+
 	useEffect(() => {
 		definition.sections.forEach((section, sectionIndex) =>
 			section.fields.forEach((field, fieldIndex) => {
@@ -51,12 +59,12 @@ export const useForm = (
 		callback(event);
 	};
 
-	const updateCurrentSection = (sectionNumber: number) => () => {
+	const moveToSection = (sectionNumber: number) => () => {
 		let element = document.getElementById(`form-section-${sectionNumber}`);
 		element.scrollIntoView();
 	};
 
-	const ValidateForm = (submitCallback: () => void = null) => () => {
+	const ValidateForm = (submitCallback: (result: any) => void = null) => () => {
 		let validatedForm = HandleFormValidation(definition);
 		let isValid =
 			flatten(validatedForm.sections.map(section => section.fields)).filter(
@@ -65,23 +73,18 @@ export const useForm = (
 		setDefinition({ ...validatedForm });
 
 		if (isValid) {
-			submitCallback();
+			submitCallback(createFormObject());
 		}
 	};
 
-	footerActions = footerActions.map(action =>
-		action.validate
-			? {
-				...action,
-				onClick: ValidateForm(action.onClick)
-			}
-			: action
-	);
+	footerActions = footerActions.map(action => ({
+		...action,
+		onClick: action.validate ? ValidateForm(action.onClick) : () => action.onClick(createFormObject())
+	}));
 
 	return {
 		definition,
-		updateCurrentSection,
-		ValidateForm,
+		moveToSection,
 		formfooterActions: footerActions
 	};
 };

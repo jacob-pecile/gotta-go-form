@@ -18,7 +18,7 @@ interface FormProps {
 
 export const Form = (props: FormProps) => {
 	let { formDefinition, className, footerActions, showNavbar } = props;
-	let { definition, updateCurrentSection, formfooterActions } = useForm(
+	let { definition, moveToSection, formfooterActions } = useForm(
 		formDefinition,
 		footerActions
 	);
@@ -37,7 +37,7 @@ export const Form = (props: FormProps) => {
 		<div className={classNames(className, 'form-container')}>
 			<div className="main-form-content" data-testid="main-form-content">
 				{showNavbar && (
-					<NavBar sections={titles} onSectionClick={updateCurrentSection} />
+					<NavBar sections={titles} onSectionClick={moveToSection} />
 				)}
 				<div className="section-container" data-testid="section-container">{sections}</div>
 			</div>

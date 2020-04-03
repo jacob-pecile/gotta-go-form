@@ -48,7 +48,7 @@ let footeractions = [
 		text: 'Submit',
 		type: 'Primary',
 		validate: true,
-		onClick: () => console.log('Submitted')
+		onClick: (form) => console.log(form)
 	}
 ];
 

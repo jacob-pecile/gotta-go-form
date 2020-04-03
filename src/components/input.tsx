@@ -33,9 +33,8 @@ export default styled(FormInput)`
 	display: flex;
 	flex-direction: column;
 
-	& > span {
+	& > span:not(.error-message) {
 		font-size: 14px;
-		
 		font-weight: 600;
 	}
 
