@@ -12,7 +12,7 @@ interface FormCheckBoxListProps {
 
 const CheckBoxList = (props: FormCheckBoxListProps) => {
     let { field } = props;
-    let selectedList = field.value;
+    let selectedList = field.value || [];
 
     let onClick = (value: number | string) => (event: any) => {
 

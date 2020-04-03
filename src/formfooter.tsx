@@ -34,37 +34,37 @@ export const FormFooter = (props: FormFooterProps) => {
 
 export default styled(FormFooter)`
     display: flex;
-    justify - content: flex - end;
+    justify-content: flex-end;
     height: 48px;
     padding: 8px;
-    background - color: #e5e5e5;
-    border - top: solid 1px #d8d8d8;
+    background-color: #e5e5e5;
+    border-top: solid 1px #d8d8d8;
 
-    & > .footer - action - container{
+    & > .footer-action-container{
         display: flex;
 
-        & > .footer - btn{
-            margin - left: 4px;
-            border - radius: 3px;
-            min - width: 80px;
-            font - weight: 600;
+        & > .footer-btn{
+            margin-left: 4px;
+            border-radius: 3px;
+            min-width: 80px;
+            font-weight: 600;
 
-            user - select: none;
+            user-select: none;
 
-            &.primary - btn{
-                background - color: #4e7ea1;
+            &.primary-btn{
+                background-color: #4e7ea1;
                 color: #ffffff;
                 border: solid 1px #4e7ea1;
             }
 
-            &.secondary - btn{
-                background - color: #ffffff;
+            &.secondary-btn{
+                background-color: #ffffff;
                 border: solid 1px #1f1f1f;
             }
 
-            &: hover{
+            &:hover{
                 cursor: pointer;
             }
         }
     }
-    `;
+`;

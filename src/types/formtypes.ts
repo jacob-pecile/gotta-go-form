@@ -13,7 +13,7 @@ export interface FormField {
 	type: FormType;
 	callback?: (e: any) => void;
 	isDirty?: boolean;
-	value: any;
+	value?: any;
 	options?: FormOptions[];
 	properties?: any;
 	customComponent?: (field: FormField) => JSX.Element;

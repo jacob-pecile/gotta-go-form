@@ -18,7 +18,7 @@ const FormInput = (props: FormInputProps) => {
 			<span>{field.title}</span>
 			<input
 				onChange={field.callback}
-				value={field.value === null ? '' : field.value}
+				value={field.value === null || field.value === undefined ? '' : field.value}
 				{...inputProps}
 			/>
 			{field.properties && field.properties.invalidMessage && (

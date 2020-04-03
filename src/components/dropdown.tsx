@@ -16,10 +16,6 @@ const FormDropdown = (props: FormDropdownProps) => {
 
     let valueOption = field.options.filter(opt => opt.value === field.value);
 
-    if (field.value !== null && !valueOption.length) {
-        return null;
-    }
-
     return (
         <div className={`form-dropdown-container ${className}`}>
             <span>{field.title}</span>

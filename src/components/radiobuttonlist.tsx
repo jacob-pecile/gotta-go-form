@@ -24,7 +24,7 @@ const FormRadioButtonList = (props: FormRadioButtonListProps) => {
         }
     };
 
-    let checkboxes = field.options.map((opt, i) => {
+    let radiobuttons = field.options.map((opt, i) => {
         let path = field.value === opt.value ? mdiRadioboxMarked : mdiRadioboxBlank;
 
         return (
@@ -47,7 +47,7 @@ const FormRadioButtonList = (props: FormRadioButtonListProps) => {
                 <span>{field.title}</span>
             </div>
             <div className="radio-list-container">
-                {checkboxes}
+                {radiobuttons}
             </div>
             {(field.properties && field.properties.invalidMessage) &&
                 <ErrorMessage message={field.properties.invalidMessage} />
