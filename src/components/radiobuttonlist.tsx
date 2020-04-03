@@ -19,11 +19,23 @@ const FormRadioButtonList = (props: FormRadioButtonListProps) => {
         field.callback({ value });
     };
 
+    let onKeyPress = (value: number | string) => (e) => {
+        if (e.which === 13) {
+            field.callback({ value });
+        }
+    };
+
     let checkboxes = field.options.map((opt, i) => {
         let path = field.value === opt.value ? mdiRadioboxMarked : mdiRadioboxBlank;
 
         return (
-            <div key={i} className="radio-button" onClick={onClick(opt.value)}>
+            <div
+                key={i}
+                className="radio-button"
+                onClick={onClick(opt.value)}
+                tabIndex={0}
+                onKeyPress={onKeyPress(opt.value)}
+            >
                 <Icon path={path} color="@#1f1f1f" />
                 <span>{opt.label}</span>
             </div>

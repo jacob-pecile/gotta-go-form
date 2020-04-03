@@ -11,7 +11,7 @@ export interface FormField {
 	title: string;
 	accessor: string;
 	type: FormType;
-	callback: (e: any) => void;
+	callback?: (e: any) => void;
 	isDirty?: boolean;
 	value: any;
 	options?: FormOptions[];

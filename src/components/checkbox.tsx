@@ -1,8 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
-import classNames from 'classnames';
-
 import Icon from '@mdi/react';
 import { mdiCheckboxBlankOutline, mdiCheckboxMarked } from '@mdi/js';
 
@@ -19,9 +17,19 @@ const FormCheckBox = (props: FormCheckBoxProps) => {
     let onClick = () => {
         field.callback({ value: !field.value });
     };
+    let onKeyPress = (e) => {
+        if (e.which === 13) {
+            onClick();
+        }
+    };
 
     return (
-        <div className={classNames('form-checkbox', props.className)} onClick={onClick}>
+        <div
+            className={`form-checkbox ${props.className}`}
+            onClick={onClick}
+            tabIndex={0}
+            onKeyPress={onKeyPress}
+        >
             <Icon path={path} color="@#1f1f1f" />
             <span>{field.title}</span>
         </div>
