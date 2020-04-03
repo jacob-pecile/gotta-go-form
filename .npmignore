@@ -10,3 +10,4 @@ tsconfig.json
 node_modules
 lib/**/*.js.map
 dist/*.js.map
+test
