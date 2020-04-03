@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
-import classNames from 'classnames';
 import ErrorMessage from './metaForm/errorMessage';
 
 import CheckBox from './checkbox';
@@ -20,7 +19,7 @@ const CheckBoxList = (props: FormCheckBoxListProps) => {
         let selected = event.value;
 
         if (!selected) {
-            field.callback(selectedList.filter(val => val != value));
+            field.callback(selectedList.filter(val => val !== value));
         }
         else {
             selectedList.push(value);
@@ -35,7 +34,7 @@ const CheckBoxList = (props: FormCheckBoxListProps) => {
             value: selected,
             callback: onClick(opt.value)
         };
-        return <CheckBox key={i} field={singleCheckbox} />
+        return <CheckBox key={i} field={singleCheckbox} />;
     });
 
     return (
@@ -43,7 +42,7 @@ const CheckBoxList = (props: FormCheckBoxListProps) => {
             <div className="checkbox-list-title">
                 <span>{field.title}</span>
             </div>
-            <div className={classNames('checkbox-list-container')}>
+            <div className="checkbox-list-container">
                 {checkboxes}
             </div>
             {(field.properties && field.properties.invalidMessage) &&
@@ -81,4 +80,4 @@ export default styled(CheckBoxList)`
             }
         }
     }
-`
+`;

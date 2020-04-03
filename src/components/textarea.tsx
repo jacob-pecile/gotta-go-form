@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
-import classNames from 'classnames';
 import ErrorMessage from './metaForm/errorMessage';
 
 interface FormTextAreaProps {
@@ -15,7 +14,7 @@ const FormTextArea = (props: FormTextAreaProps) => {
 	let inputProps = field.properties ? field.properties.inputProps : null;
 
 	return (
-		<div className={classNames('form-textarea-container', className)}>
+		<div className={`form-textarea-container ${className}`}>
 			<span>{field.title}</span>
 			<textarea
 				onChange={field.callback}

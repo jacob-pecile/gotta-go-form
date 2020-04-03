@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
-import classNames from 'classnames';
 import ErrorMessage from './metaForm/errorMessage';
 
 import Icon from '@mdi/react';
@@ -47,7 +46,7 @@ const FormRadioButtonList = (props: FormRadioButtonListProps) => {
             <div className="radio-list-title">
                 <span>{field.title}</span>
             </div>
-            <div className={classNames('radio-list-container')}>
+            <div className="radio-list-container">
                 {checkboxes}
             </div>
             {(field.properties && field.properties.invalidMessage) &&
@@ -99,4 +98,4 @@ export default styled(FormRadioButtonList)`
         }
     }
     
-`
+`;

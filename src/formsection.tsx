@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Section, FormType, FormField } from './types/formtypes';
 import styled from 'styled-components';
-import classNames from 'classnames';
 
 import {
     FormInput,
@@ -51,7 +50,7 @@ export const FormSection = (props: FormSectionProps) => {
     );
 
     return (
-        <div id={`form-section-${sectionIndex}`} className={classNames(props.className, 'form-section')} >
+        <div id={`form-section-${sectionIndex}`} className={`${props.className} form-section`} >
             <div className="section-title-container" data-testid="section-title-container">
                 <span>{section.title}</span>
             </div>

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
-import classNames from 'classnames';
 import ErrorMessage from './metaForm/errorMessage';
 
 import Select from 'react-select';
@@ -22,7 +21,7 @@ const FormDropdown = (props: FormDropdownProps) => {
     }
 
     return (
-        <div className={classNames('form-dropdown-container', className)}>
+        <div className={`form-dropdown-container ${className}`}>
             <span>{field.title}</span>
             <Select
                 className="form-dropdown"

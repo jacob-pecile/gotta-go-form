@@ -6,7 +6,6 @@ import FormSection from './formsection';
 import NavBar from './components/navigation/navbar';
 import FormFooter from './formfooter';
 
-import classNames from 'classnames';
 import styled from 'styled-components';
 
 interface FormProps {
@@ -34,7 +33,7 @@ export const Form = (props: FormProps) => {
 	let titles = formDefinition.sections.map(section => section.title);
 
 	return (
-		<div className={classNames(className, 'form-container')}>
+		<div className={`${className} form-container`}>
 			<div className="main-form-content" data-testid="main-form-content">
 				{showNavbar && (
 					<NavBar sections={titles} onSectionClick={moveToSection} />
@@ -44,7 +43,7 @@ export const Form = (props: FormProps) => {
 			<div className="form-footer">
 				<FormFooter actions={formfooterActions} />
 			</div>
-		</div>
+		</div >
 	);
 };
 
