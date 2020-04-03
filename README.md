@@ -98,6 +98,7 @@ interface FormField {
 	validation?: Validation | Validation[];
 	visibility?: Visibility;
 	observer?: Observer;
+	fieldWidthPercentage?: number; // the percentage of the row you want this field to take up. Default is 100.
 }
 
 interface FormOptions {

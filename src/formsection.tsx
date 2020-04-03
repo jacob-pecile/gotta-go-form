@@ -25,10 +25,6 @@ export const FormSection = (props: FormSectionProps) => {
 
     const renderField = (field: FormField, fieldIndex: number) => {
 
-        if (field.visibility && !field.visibility.isVisible) {
-            return null;
-        }
-
         let fieldComponent = {
             [FormType.Custom]: field.customComponent && field.customComponent(field),
             [FormType.Input]: <FormInput key={fieldIndex} field={field} {...field.properties} />,
@@ -43,8 +39,9 @@ export const FormSection = (props: FormSectionProps) => {
         return fieldComponent[field.type];
     };
 
-    let fields = section.fields.map((field, index) =>
-        <div key={index} className="field-container">
+    let fields = section.fields.filter(field => (!field.visibility || field.visibility.isVisible)).map((field, index) =>
+        <div key={index} className="field-container"
+            style={{ width: `calc(${field.fieldWidthPercentage || 100}% - 16px)` }}>
             {renderField(field, index)}
         </div>
     );
@@ -79,10 +76,19 @@ export default styled(FormSection)`
 
     & > .form-field-container{
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
 
         & > .field-container{
-            margin-bottom: 16px;
+            margin: 8px;
+            align-self: center;    
+            min-height: 30px;
+            align-items: center;
+            display: flex;
+
+            & > *{
+                flex: 1
+            }
         }
     }
 

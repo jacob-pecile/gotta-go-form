@@ -44,7 +44,6 @@ export default styled(FormCheckBox)`
 
     & > span{
         font-size: 14px;
-        
         user-select: none;
     }
 

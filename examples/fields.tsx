@@ -7,7 +7,8 @@ export const input: types.FormField = {
 	type: types.FormType.Input,
 	callback: e => console.log(e.target.value),
 	mandatoryMessage: 'please put something here',
-	properties: { inputProps: { maxLength: 5 } }
+	properties: { inputProps: { maxLength: 5 } },
+	fieldWidthPercentage: 50
 };
 
 export const checkbox: types.FormField = {
@@ -15,6 +16,7 @@ export const checkbox: types.FormField = {
 	accessor: 'checkbox',
 	type: types.FormType.Checkbox,
 	callback: e => (null),
+	fieldWidthPercentage: 50
 };
 
 export const dropdown: types.FormField = {

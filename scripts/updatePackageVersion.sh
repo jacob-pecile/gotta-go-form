@@ -2,6 +2,6 @@
 
 BUILD_VERSION=$1
 
-NEW_VERSION="\"0.1.$BUILD_VERSION\""
+NEW_VERSION="\"1.0.$BUILD_VERSION\""
 
-sed -i "s/\"version\": \"0.1.1\"/\"version\": $NEW_VERSION/g" package.json
+sed -i "s/\"version\": \"1.0.0\"/\"version\": $NEW_VERSION/g" package.json

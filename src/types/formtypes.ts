@@ -22,6 +22,7 @@ export interface FormField {
 	validation?: Validation | Validation[];
 	visibility?: Visibility;
 	observer?: Observer;
+	fieldWidthPercentage?: number;
 }
 
 export enum FormType {

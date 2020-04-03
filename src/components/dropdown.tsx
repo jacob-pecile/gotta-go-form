@@ -23,7 +23,9 @@ const FormDropdown = (props: FormDropdownProps) => {
                 className="form-dropdown"
                 options={field.options}
                 value={valueOption[0]}
-                onChange={field.callback}
+                onChange={field.callback} styles={{
+                    control: styles => ({ ...styles, border: '1px solid #1f1f1f' })
+                }}
             />
             {(field.properties && field.properties.invalidMessage) &&
                 <ErrorMessage message={field.properties.invalidMessage} />
