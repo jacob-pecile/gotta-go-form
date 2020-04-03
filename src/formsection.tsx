@@ -51,9 +51,9 @@ export const FormSection = (props: FormSectionProps) => {
 
     return (
         <div id={`form-section-${sectionIndex}`} className={`${props.className} form-section`} >
-            <div className="section-title-container" data-testid="section-title-container">
+            {section.title && <div className="section-title-container" data-testid="section-title-container">
                 <span>{section.title}</span>
-            </div>
+            </div>}
             <div className="form-field-container" data-testid="form-field-container">
                 {fields}
             </div>
@@ -64,6 +64,7 @@ export const FormSection = (props: FormSectionProps) => {
 export default styled(FormSection)`
     display: flex;
     flex-direction: column;
+    width: 100%;
     margin: 0px 8px;
 
     & > .section-title-container{
@@ -72,8 +73,7 @@ export default styled(FormSection)`
 
         & > span{
             font-weight: 600;
-            font-size: 24px;
-            
+            font-size: 16px;
         }
     }
 

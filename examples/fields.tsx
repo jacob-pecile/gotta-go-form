@@ -14,7 +14,7 @@ export const checkbox: types.FormField = {
 	title: 'CheckBox',
 	accessor: 'checkbox',
 	type: types.FormType.Checkbox,
-	callback: e => console.log(e),
+	callback: e => (null),
 };
 
 export const dropdown: types.FormField = {

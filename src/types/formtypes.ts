@@ -1,9 +1,10 @@
 export interface FormDefinition {
+	title?: string;
 	sections: Section[];
 }
 
 export interface Section {
-	title: string;
+	title?: string;
 	fields: FormField[];
 }
 
