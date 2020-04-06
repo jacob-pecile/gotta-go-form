@@ -33,7 +33,8 @@ export enum FormType {
 	RadioButtonList = 3,
 	CheckboxList = 4,
 	DateTime = 5,
-	TextArea = 6
+	TextArea = 6,
+	Slider = 7
 }
 
 export interface FormIndex {

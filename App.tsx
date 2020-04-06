@@ -9,10 +9,12 @@ import {
 	input,
 	checkbox,
 	dropdown,
+	multiDropdown,
 	checkboxlist,
 	radiolist,
 	datetime,
-	custom
+	custom,
+	slider
 } from './examples/fields';
 
 import { createGlobalStyle } from 'styled-components';
@@ -34,10 +36,12 @@ let def: FormDefinition = {
 				input,
 				checkbox,
 				dropdown,
+				multiDropdown,
 				checkboxlist,
 				radiolist,
 				datetime,
-				custom
+				custom,
+				slider
 			]
 		}
 	]
