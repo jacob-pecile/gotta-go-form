@@ -9,7 +9,8 @@ import {
     FormCheckBoxList,
     FormRadioButtonList,
     FormTextArea,
-    FormDateTime
+    FormDateTime,
+    FormSlider
 }
     from './components';
 
@@ -33,14 +34,15 @@ export const FormSection = (props: FormSectionProps) => {
             [FormType.DropDown]: <FormDropDown key={fieldIndex} field={field} />,
             [FormType.CheckboxList]: <FormCheckBoxList key={fieldIndex} field={field} />,
             [FormType.RadioButtonList]: <FormRadioButtonList key={fieldIndex} field={field} />,
-            [FormType.DateTime]: <FormDateTime key={fieldIndex} field={field} />
+            [FormType.DateTime]: <FormDateTime key={fieldIndex} field={field} />,
+            [FormType.Slider]: <FormSlider key={fieldIndex} field={field} />
         };
 
         return fieldComponent[field.type];
     };
 
     let fields = section.fields.filter(field => (!field.visibility || field.visibility.isVisible)).map((field, index) =>
-        <div key={index} className="field-container"
+        <div key={index} className={`field-container field-${field.accessor}`}
             style={{ width: `calc(${field.fieldWidthPercentage || 100}% - 16px)` }}>
             {renderField(field, index)}
         </div>

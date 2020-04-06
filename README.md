@@ -80,6 +80,7 @@ The Form Field object represents a single field on your form. gotta-go-form curr
 - CheckboxList
 - DateTime
 - TextArea
+- Slider
 - Custom
 
 It is defined using the following interface:
@@ -111,6 +112,22 @@ interface FormOptions {
 The accessor property is the field the form uses to distinguish fields in your form. Think of it like an ID on a DOM object.
 
 You can find examples of the different form types [here](https://github.com/jacob-pecile/gotta-go-form/blob/master/examples/fields.tsx)
+
+##### Properties
+
+Each field type has valid properties that are specific to it
+
+| Field Type      | Properties                                      |
+|-----------------|-------------------------------------------------|
+| Input           | inputProps                                      |
+| TextArea        | inputProps                                      |
+| CheckBox        | N/A                                             |
+| DropDown        | All properties allowed by react-select          |
+| CheckBoxList    | layout                                          |
+| RadioButtonList | layout                                          |
+| DateTime        | All properties allowed by react-datetime-picker |
+| Slider          | min, max, step                                  |
+
 
 ### Validation
 If your only concern is that the field is empty you don't need to add a validation property to your field.

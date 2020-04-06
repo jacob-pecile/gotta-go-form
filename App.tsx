@@ -13,7 +13,8 @@ import {
 	checkboxlist,
 	radiolist,
 	datetime,
-	custom
+	custom,
+	slider
 } from './examples/fields';
 
 import { createGlobalStyle } from 'styled-components';
@@ -39,7 +40,8 @@ let def: FormDefinition = {
 				checkboxlist,
 				radiolist,
 				datetime,
-				custom
+				custom,
+				slider
 			]
 		}
 	]

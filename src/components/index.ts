@@ -5,6 +5,7 @@ import FormCheckBoxList from './checkboxlist';
 import FormRadioButtonList from './radiobuttonlist';
 import FormDateTime from './datetime';
 import FormTextArea from './textarea';
+import FormSlider from './slider';
 
 export {
     FormInput,
@@ -13,5 +14,6 @@ export {
     FormCheckBoxList,
     FormRadioButtonList,
     FormTextArea,
-    FormDateTime
+    FormDateTime,
+    FormSlider
 };

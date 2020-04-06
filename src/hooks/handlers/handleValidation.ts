@@ -75,7 +75,8 @@ const isFieldEmpty = (field: FormField) => {
 		[FormType.TextArea]: () => value === '' || value === null || value === undefined,
 		[FormType.DropDown]: () => !value || value === 0,
 		[FormType.RadioButtonList]: () => !value || value === 0,
-		[FormType.DateTime]: () => !value
+		[FormType.DateTime]: () => !value,
+		[FormType.Slider]: () => value === '' || value === null || value === undefined,
 	};
 
 	return !!isEmptyCalculator[field.type] && isEmptyCalculator[field.type]();

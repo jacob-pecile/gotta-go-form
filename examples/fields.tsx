@@ -107,3 +107,11 @@ export const custom: types.FormField = {
 		/>
 	)
 };
+
+export const slider: types.FormField = {
+	title: 'Slider',
+	accessor: 'slider',
+	type: types.FormType.Slider,
+	callback: e => console.log(e.target.value),
+	fieldWidthPercentage: 50
+};

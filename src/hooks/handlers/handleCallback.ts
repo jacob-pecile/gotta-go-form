@@ -9,7 +9,8 @@ export const handleCallback = (field: FormField, event: any) => {
 		[FormType.DropDown]: () => event.value,
 		[FormType.CheckboxList]: () => event,
 		[FormType.RadioButtonList]: () => event.value,
-		[FormType.DateTime]: () => event
+		[FormType.DateTime]: () => event,
+		[FormType.Slider]: () => event.target.value
 	};
 
 	field.value = fieldValue[field.type]();
