@@ -32,6 +32,20 @@ export const dropdown: types.FormField = {
 	mandatoryMessage: 'pick something'
 };
 
+export const multiDropdown: types.FormField = {
+	title: 'DropDown',
+	accessor: 'multiDropdown',
+	type: types.FormType.DropDown,
+	callback: e => console.log(e),
+	options: [
+		{ value: 1, label: 'gotta' },
+		{ value: 2, label: 'go' },
+		{ value: 3, label: 'fast' }
+	],
+	mandatoryMessage: 'pick something',
+	properties: { isMulti: true }
+};
+
 export const checkboxlist: types.FormField = {
 	title: 'CheckBoxList',
 	accessor: 'checkboxlist',
