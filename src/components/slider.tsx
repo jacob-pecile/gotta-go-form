@@ -18,9 +18,20 @@ const FormSlider = (props: FormSliderProps) => {
     let { field, className } = props;
 
     let properties = { ...defaultProperties, ...field.properties };
-    let value = field.value || properties.min;
+    let isRange = !!properties.isRange;
+    const defaultValue = isRange ? [properties.min, properties.max] : properties.min;
+
+    let value = field.value || defaultValue;
 
     let tooltipPush = (value - properties.min) / (properties.max - properties.min);
+
+    let rangeCallback = (index: number) => (event => {
+        value[index] = event.target.value;
+        value.sort();
+        field.callback({ target: { value } });
+    });
+
+    let onChange = isRange ? rangeCallback(0) : field.callback;
 
     return (
         <div className={`${className} form-slider`}>
@@ -31,15 +42,25 @@ const FormSlider = (props: FormSliderProps) => {
                     <span>{properties.max}</span>
                 </div>
                 <input
-                    value={value}
-                    onChange={field.callback}
+                    value={isRange ? value[0] : value}
+                    onChange={onChange}
                     type="range"
                     min={properties.min}
                     max={properties.max}
                     step={properties.step} />
+                {field.properties && field.properties.isRange &&
+                    <div className="range-slider-container">
+                        <input
+                            value={value[1]}
+                            onChange={rangeCallback(1)}
+                            type="range"
+                            min={properties.min}
+                            max={properties.max}
+                            step={properties.step} />
+                    </div>}
                 <span className="slider-title" style={{ left: `calc(${tooltipPush * 100}% - ${36 * tooltipPush}px)` }}>{value}</span>
             </div>
-            {field.properties && field.properties.invalidMessage && (
+            {isRange && (
                 <ErrorMessage message={field.properties.invalidMessage} />
             )}
         </div>
@@ -126,7 +147,15 @@ export default styled(FormSlider)`
             }
         }
 
-        & > input{
+        & > .range-slider-container{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        & input{
             margin-top: 20px;
             cursor: pointer;
             width: calc(100% - 8px);
