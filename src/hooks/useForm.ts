@@ -60,7 +60,9 @@ export const useForm = (
 
 		setDefinition({ ...definition });
 
-		callback(event);
+		if (callback) {
+			callback(event);
+		}
 	};
 
 	const moveToSection = (sectionNumber: number) => () => {

@@ -41,12 +41,14 @@ export const FormSection = (props: FormSectionProps) => {
         return fieldComponent[field.type];
     };
 
-    let fields = section.fields.filter(field => (!field.visibility || field.visibility.isVisible)).map((field, index) =>
-        <div key={index} className={`field-container field-${field.accessor}`}
-            style={{ width: `calc(${field.fieldWidthPercentage || 100}% - 16px)` }}>
-            {renderField(field, index)}
-        </div>
-    );
+    let fields = section.fields
+        .filter(field => (!field.visibility || field.visibility.isVisible) && field.callback)
+        .map((field, index) =>
+            <div key={index} className={`field-container field-${field.accessor}`}
+                style={{ width: `calc(${field.fieldWidthPercentage || 100}% - 16px)` }}>
+                {renderField(field, index)}
+            </div>
+        );
 
     return (
         <div id={`form-section-${sectionIndex}`} className={`${props.className} form-section`} >

@@ -5,7 +5,6 @@ export const input: types.FormField = {
 	title: 'Input',
 	accessor: 'input',
 	type: types.FormType.Input,
-	callback: e => console.log(e.target.value),
 	mandatoryMessage: 'please put something here',
 	properties: { inputProps: { maxLength: 5 } },
 	fieldWidthPercentage: 50
