@@ -23,25 +23,35 @@ const FormSlider = (props: FormSliderProps) => {
 
     let value = field.value || defaultValue;
 
-    let tooltipPush = (value - properties.min) / (properties.max - properties.min);
+    let tooltipPush = (v) => (v - properties.min) / (properties.max - properties.min);
 
     let rangeCallback = (index: number) => (event => {
-        value[index] = event.target.value;
-        value.sort();
-        field.callback({ target: { value } });
+        let currentvalue = [...value];
+        currentvalue[index] = parseInt(event.target.value);
+        if (currentvalue[0] === currentvalue[1]) {
+            return;
+        }
+        if (currentvalue[0] > currentvalue[1]) {
+            currentvalue.reverse();
+        }
+        field.callback({ target: { value: currentvalue } });
     });
 
     let onChange = isRange ? rangeCallback(0) : field.callback;
 
     return (
-        <div className={`${className} form-slider`}>
+        <div className={`${className} form-slider`} data-testid="form-slider-container">
             <span>{field.title}</span>
             <div className="slider-container">
                 <div className="slider-endpoints">
                     <span>{properties.min}</span>
+                    {isRange && <div className="range-value" data-testid="range-value">
+                        {value[0]} - {value[1]}
+                    </div>}
                     <span>{properties.max}</span>
                 </div>
                 <input
+                    data-testid="form-slider"
                     value={isRange ? value[0] : value}
                     onChange={onChange}
                     type="range"
@@ -49,16 +59,20 @@ const FormSlider = (props: FormSliderProps) => {
                     max={properties.max}
                     step={properties.step} />
                 {field.properties && field.properties.isRange &&
-                    <div className="range-slider-container">
-                        <input
-                            value={value[1]}
-                            onChange={rangeCallback(1)}
-                            type="range"
-                            min={properties.min}
-                            max={properties.max}
-                            step={properties.step} />
-                    </div>}
-                <span className="slider-title" style={{ left: `calc(${tooltipPush * 100}% - ${36 * tooltipPush}px)` }}>{value}</span>
+                    <input
+                        data-testid="form-range-slider"
+                        value={value[1]}
+                        onChange={rangeCallback(1)}
+                        type="range"
+                        min={properties.min}
+                        max={properties.max}
+                        step={properties.step} />
+                }
+                {!isRange &&
+                    <span className="slider-title" style={{ left: `calc(${tooltipPush(value) * 100}% - ${36 * tooltipPush(value)}px)` }}>
+                        {value}
+                    </span>
+                }
             </div>
             {isRange && (
                 <ErrorMessage message={field.properties.invalidMessage} />
@@ -78,6 +92,7 @@ const track = css`
   height: 4px;
   background: ${trackColour};
   border-radius: 8px;
+  position: relative;
 `;
 
 const fill = css`
@@ -93,6 +108,8 @@ const thumb = css`
   border-radius: 50%;
   background: #4e7ea1;
   box-shadow: 0px 0px 5px rgba(66, 97, 255, 0.5);
+  position: relative;
+  z-index: 1;
 `;
 
 export default styled(FormSlider)`
@@ -109,6 +126,7 @@ export default styled(FormSlider)`
         display: flex;
         flex-direction: column;
         padding-left: 8px;
+        padding-bottom: ${props => props.field.properties && props.field.properties.isRange ? '20px' : '0'};
 
         & > .slider-endpoints{
             height: 36px;
@@ -125,7 +143,7 @@ export default styled(FormSlider)`
             display: none;
             position: absolute;
             top: 0;
-            background-color: #1f1f1f;
+            background-color: #6c6c6c;
             color: white;
             border-radius: 3px;
             padding: 4px;
@@ -138,7 +156,7 @@ export default styled(FormSlider)`
                 content: ' ';
                 width: 0;
                 height: 0;
-                border-top: 8px solid #1f1f1f;
+                border-top: 8px solid #6c6c6c;
                 border-left: 8px solid transparent;
                 border-right: 8px solid transparent;
                 bottom: -8px;
@@ -147,15 +165,12 @@ export default styled(FormSlider)`
             }
         }
 
-        & > .range-slider-container{
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            display: flex;
-            align-items: flex-end;
-        }
+        
 
         & input{
+            position: ${props => props.field.properties && props.field.properties.isRange ? 'absolute' : 'static'};
+            bottom: 0;
+            
             margin-top: 20px;
             cursor: pointer;
             width: calc(100% - 8px);
