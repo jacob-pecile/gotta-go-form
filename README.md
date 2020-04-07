@@ -126,7 +126,7 @@ Each field type has valid properties that are specific to it
 | CheckBoxList    | layout                                          |
 | RadioButtonList | layout                                          |
 | DateTime        | All properties allowed by react-datetime-picker |
-| Slider          | min, max, step                                  |
+| Slider          | min, max, step, isRange                         |
 
 
 ### Validation
