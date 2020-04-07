@@ -56,6 +56,7 @@ export default styled(Form)`
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	width: 100%;
 	font-family: 'Open Sans', Arial, sans-serif;
 
 	& > .main-form-window {
