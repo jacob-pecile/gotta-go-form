@@ -86,6 +86,7 @@ export default styled(FormDateTime)`
 			width: 350px;
 			max-width: 100vw;
 			position: absolute;
+			z-index: 100;
 
 			&.react-datetime-picker__calendar--closed {
 				display: none;
