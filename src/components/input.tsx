@@ -34,7 +34,6 @@ export default styled(FormInput)`
 
 	& > span:not(.error-message) {
 		font-size: 14px;
-		font-weight: 600;
 	}
 
 	& > input {
