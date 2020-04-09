@@ -6,7 +6,7 @@ export const handleCallback = (field: FormField, event: any) => {
 		[FormType.Input]: () => event.target.value,
 		[FormType.TextArea]: () => event.target.value,
 		[FormType.Checkbox]: () => event.value,
-		[FormType.DropDown]: () => event.value,
+		[FormType.DropDown]: () => event && event.value,
 		[FormType.CheckboxList]: () => event,
 		[FormType.RadioButtonList]: () => event.value,
 		[FormType.DateTime]: () => event,
