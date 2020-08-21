@@ -9,5 +9,5 @@ tslint.json
 tsconfig.json
 node_modules
 lib/**/*.js.map
-dist/*.js.map
+dist
 test

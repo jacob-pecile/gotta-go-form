@@ -3,7 +3,7 @@ A generic form renderer with Typescript, hooks, and styled components.
 
 # About
 
-Given a single JSON object to define your form. gotta-go-form's Form component will render out an entire form with validation, and field dependencies.
+With a single JSON object to define your form, gotta-go-form's Form component will render out an entire form with validation, and field dependencies.
 
 Gotta Go Form's goal is to allow quick creation of forms with even the most complicated requirements.
 
@@ -56,7 +56,7 @@ render() {
 
 # Form Definition
 
-The object used to define your form is defined as a list of "Sections" which in turn are defined as a lit of "FormFields"
+The object used to define your form is defined as a list of "Sections" which in turn are defined as a list of "FormFields"
 
 ```
 interface FormDefinition {
@@ -130,10 +130,10 @@ Each field type has valid properties that are specific to it
 
 
 ### Validation
-If your only concern is that the field is empty you don't need to add a validation property to your field.
+If your only concern is that the field is not empty you don't need to add a validation property to your field.
 Simply add a mandatoryMessage and your field will be deemed invalid if empty.
 
-If your validation is more complicated than that you will need to add a more complicated property:
+If your validation is more complex then you will need to add a more complicated property:
 
 ```
 interface Validation {
@@ -151,14 +151,14 @@ gotta-go-form's validation allows for validation of varying complications.
 Sometimes your validation might be dependant on the values of other fields. If that is the case put the accessors of the dependant fields here. 
 
 ##### validate
-The function used to validate your field. THe entire field obejct if always be passed as the first parameter to this function. All dependant fields specified in the accessors property will be passed in as supplementary parameters. **These supplementary fields will be passed in the order specified in accessors**
+The function used to validate your field. The entire field obejct will always be passed as the first parameter to this function. All dependant fields specified in the accessors property will be passed in as supplementary parameters. **These supplementary fields will be passed in the order specified in accessors**
 
 ##### errorMessage
 The message you want to display below the field if the user submits the form while this field is invalid
 
 
 ### Visibility 
-Sometimes you want fields to hidden in certain circumstances. YOu can define this with the visibility property
+Sometimes you want fields to hidden in certain circumstances. You can define this with the visibility property
 
 ```
 interface Visibility {
@@ -174,9 +174,9 @@ A function that returns a boolean based on the values of the dependant fields
 **The passed in values will be passed in the order specified in accessors**
 
 ### Observers
-Sometimes you want the sate of certain fields to be updated upon the change of other fields.
+Sometimes you want the state of certain fields to be updated upon the change of other fields.
 
-For example you might want an endtime field that immediately sets itself to 15 minutes after the user has set an start time.
+For example you might want an end time field that immediately sets itself to 15 minutes after the user has set a start time.
 
 You can add this logic to your form using the observer property. 
 
