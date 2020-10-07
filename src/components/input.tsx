@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FormField } from '../types/formtypes';
 import ErrorMessage from './metaForm/errorMessage';
 
-interface FormInputProps {
+export interface FormInputProps {
 	field: FormField;
 	className?: string;
 }

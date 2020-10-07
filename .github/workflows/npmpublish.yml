@@ -5,6 +5,7 @@ on:
     branches: [ master ]
     paths-ignore:
     - 'App.js'
+    - '.storybook'
 
 jobs:
   build:
