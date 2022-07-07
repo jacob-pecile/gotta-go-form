@@ -24,7 +24,7 @@
 		"@mdi/js": "4.2.95",
 		"@mdi/react": "1.2.1",
 		"lodash": "4.17.19",
-		"moment": "2.24.0",
+		"moment": "2.29.4",
 		"react-datepicker": "2.10.1",
 		"react-datetime-picker": "2.9.0",
 		"react-select": "3.0.7",
